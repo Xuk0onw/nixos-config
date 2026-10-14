@@ -1,0 +1,84 @@
+# Dynamic btop theme
+# Colors are generated from wallpaper palette
+
+# Main background
+theme[main_bg]=""
+
+# Main text color
+theme[main_fg]="{{foreground}}"
+
+# Title color
+theme[title]="{{color1}}"
+
+# Highlight color
+theme[hi_fg]="{{color2}}"
+
+# Selected process
+theme[selected_bg]="{{background}}"
+theme[selected_fg]="{{color2}}"
+
+# Inactive text
+theme[inactive_fg]="{{color4}}"
+
+# Graph text
+theme[graph_text]="{{foreground}}"
+
+# Meter background
+theme[meter_bg]="{{color5}}"
+
+# Misc process colors
+theme[proc_misc]="{{color3}}"
+
+# Box colors
+theme[cpu_box]="{{color1}}"
+theme[mem_box]="{{color2}}"
+theme[net_box]="{{color3}}"
+theme[proc_box]="{{color4}}"
+
+# Divider lines
+theme[div_line]="{{color4}}"
+
+# Temperature graph
+theme[temp_start]="{{color1}}"
+theme[temp_mid]="{{color2}}"
+theme[temp_end]="{{color3}}"
+
+# CPU graph
+theme[cpu_start]="{{color4}}"
+theme[cpu_mid]="{{color1}}"
+theme[cpu_end]="{{color2}}"
+
+# Free memory
+theme[free_start]="{{color1}}"
+theme[free_mid]="{{color2}}"
+theme[free_end]="{{color3}}"
+
+# Cached memory
+theme[cached_start]="{{color4}}"
+theme[cached_mid]="{{color1}}"
+theme[cached_end]="{{color2}}"
+
+# Available memory
+theme[available_start]="{{color2}}"
+theme[available_mid]="{{color3}}"
+theme[available_end]="{{color4}}"
+
+# Used memory
+theme[used_start]="{{color3}}"
+theme[used_mid]="{{color4}}"
+theme[used_end]="{{color1}}"
+
+# Download graph
+theme[download_start]="{{color3}}"
+theme[download_mid]="{{color2}}"
+theme[download_end]="{{color4}}"
+
+# Upload graph
+theme[upload_start]="{{color1}}"
+theme[upload_mid]="{{color4}}"
+theme[upload_end]="{{color2}}"
+
+# Process gradients
+theme[process_start]="{{color4}}"
+theme[process_mid]="{{color1}}"
+theme[process_end]="{{color2}}"
