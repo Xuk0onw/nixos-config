@@ -11,7 +11,7 @@
     };
 
     theme = {
-      name = "Space-transparency";
+      name = "Orchis-Purple-Dark";
     };
 
     gtk4.theme = config.gtk.theme;
@@ -30,7 +30,7 @@
   };
 
   home.sessionVariables = {
-    GTK_THEME = "Space-transparency";
+    GTK_THEME = "Orchis-Purple-Dark";
     TRACKER_DISABLE = "1";
   };
 
