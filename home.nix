@@ -22,6 +22,7 @@
     ./home-manager/fastfetch.nix
     ./home-manager/home-programs.nix
     ./home-manager/home-services.nix
+    ./home-manager/gtk-qt.nix
     ./home-manager/river.nix
   ] ++ (if device == "thinkpad" then [
     ./home-manager/foot.nix
@@ -58,17 +59,8 @@
     firefox
   ] else [
     wineWow64Packages.stable
-    qt6Packages.qtstyleplugin-kvantum
     inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.skwd-wall.packages.${pkgs.system}.default
-    kdePackages.breeze-gtk
-    kdePackages.breeze-icons
-    adwaita-icon-theme
-    hicolor-icon-theme
-    qt6Packages.qt6ct
-    libsForQt5.qt5ct
-    tela-icon-theme
-    tela-circle-icon-theme
     wdisplays
     pcsx2
     winetricks
