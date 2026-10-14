@@ -52,7 +52,6 @@
     qalculate-gtk
     openlogi
     vscodium
-    protonplus
   ] ++ (if device == "thinkpad" then [
     foot
     fuzzel

@@ -1,6 +1,12 @@
 { lib, pkgs, hw_file, ... }:
 
 {
+  environment.systemPackages = with pkgs; [
+    steamcmd
+    protonup-qt
+    protonplus
+  ];
+
   programs.steam = lib.mkIf (hw_file == "nixos") {
     enable = true;
     remotePlay.openFirewall = true;

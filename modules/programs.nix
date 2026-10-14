@@ -50,12 +50,10 @@
     age
     sops
     gh
-    steamcmd
     nix-search-tv
   ] ++ lib.optionals (hw_file == "nixos") [
     opentabletdriver
     mangohud
-    protonup-qt
     efibootmgr
     rofi
     alsa-utils
