@@ -1,4 +1,4 @@
-{ lib, pkgs, hw_file, inputs, ... }:
+{ lib, pkgs, hw_file, ... }:
 
 {
   nixpkgs.config.allowUnfree = true;
@@ -7,7 +7,6 @@
     pkgs.linuxPackages_libre
   else
     pkgs.linuxPackages_zen;
-    #inputs.cachyos.legacyPackages.${pkgs.stdenv.hostPlatform.system}."linuxPackages-cachyos-bore-lto-zen4";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   imports =
   [

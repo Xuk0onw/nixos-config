@@ -4,7 +4,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     qylock.url = "github:Darkkal44/qylock";
-    cachyos.url = "github:xddxdd/nix-cachyos-kernel";
+    nix-cachyos-kernel.url ="github:xddxdd/nix-cachyos-kernel/release";
     noctalia.url = "github:noctalia-dev/noctalia/cachix";
     skwd-wall.url = "github:liixini/skwd-wall";
 
@@ -43,8 +43,9 @@
         system = "x86_64-linux";
         specialArgs = { inherit inputs; hw_file = "nixos"; };
         modules = [
-          ./configuration.nix
+         ./configuration.nix
          ./modules/desktop/noctalia.nix
+         ./modules/desktop/cachykernel.nix
           home-manager.nixosModules.home-manager
           mangowm.nixosModules.mango
           inputs.qylock.nixosModules.default

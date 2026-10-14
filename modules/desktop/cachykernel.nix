@@ -1,11 +1,10 @@
-
-{ inputs, ... }:
+{ inputs, lib, pkgs, ... }:
 
 {
   nixpkgs.overlays = [
     inputs.nix-cachyos-kernel.overlays.pinned
   ];
 
-  boot.kernelPackages =
-    inputs.nix-cachyos-kernel.legacyPackages.x86_64-linux.linuxPackages-cachyos-bore-lto-zen4;
+  boot.kernelPackages = lib.mkForce
+    pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto-zen4;
 }
