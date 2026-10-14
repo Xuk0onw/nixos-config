@@ -9,7 +9,6 @@
   imports = [
     inputs.zen-browser.homeModules.beta
     ./home-manager/fish.nix
-    ./home-manager/gtk.nix
     ./home-manager/noctalia.nix
     ./home-manager/tmux.nix
     ./home-manager/wlogout.nix
