@@ -4,8 +4,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     qylock.url = "github:Darkkal44/qylock";
-    #nix-cachyos-kernel.url ="github:xddxdd/nix-cachyos-kernel/release";
-    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel";
+    nix-cachyos-kernel.url ="github:xddxdd/nix-cachyos-kernel/release";
     noctalia.url = "github:noctalia-dev/noctalia/cachix";
     skwd-wall.url = "github:liixini/skwd-wall";
 
