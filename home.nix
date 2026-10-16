@@ -57,9 +57,9 @@
     fuzzel
     firefox
   ] else [
-    wineWow64Packages.stable
     inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.skwd-wall.packages.${pkgs.system}.default
+    wineWow64Packages.stable
     wdisplays
     pcsx2
     winetricks

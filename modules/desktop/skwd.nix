@@ -3,10 +3,10 @@
 
 let
   skwd-wall =
-    inputs.skwd-wall.programs.${pkgs.stdenv.hostPlatform.system}.default;
+    inputs.skwd-wall.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
   skwd-paper-plasma =
-    inputs.skwd-wall.programs.${pkgs.stdenv.hostPlatform.system}.skwd-paper-plasma;
+    inputs.skwd-wall.packages.${pkgs.stdenv.hostPlatform.system}.plasma;
 in
 {
   imports = [
