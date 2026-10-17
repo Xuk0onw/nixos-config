@@ -28,6 +28,7 @@
     ./home-manager/fuzzel.nix
   ] else [
     ./home-manager/kitty.nix
+    ./home-manager/opencode.nix
     ./home-manager/rofi.nix
   ]);
 
@@ -57,7 +58,9 @@
     fuzzel
     firefox
   ] else [
+    inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.opencode
     inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.skwd-wall.packages.${pkgs.stdenv.hostPlatform.system}.plasma
     inputs.skwd-wall.packages.${pkgs.system}.default
     wineWow64Packages.stable
     wdisplays

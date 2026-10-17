@@ -7,6 +7,7 @@
     nix-cachyos-kernel.url ="github:xddxdd/nix-cachyos-kernel/release";
     noctalia.url = "github:noctalia-dev/noctalia/cachix";
     skwd-wall.url = "github:liixini/skwd-wall";
+    llm-agents.url = "github:numtide/llm-agents.nix";
 
     home-manager = {
       url = "github:nix-community/home-manager";
