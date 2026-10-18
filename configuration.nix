@@ -22,8 +22,8 @@
     ./modules/network.nix
     ./modules/optimisation.nix
     ./modules/audio.nix
-    #./modules/searxng.nix
     ./modules/lab.nix
+    ./modules/olama.nix
     ./modules/git.nix
   ]
   ++ lib.optionals (hw_file != "thinkpad") [
