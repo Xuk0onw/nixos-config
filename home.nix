@@ -62,7 +62,7 @@
     inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-code
     inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.skwd-wall.packages.${pkgs.stdenv.hostPlatform.system}.plasma
-    inputs.skwd-wall.packages.${pkgs.system}.default
+    inputs.skwd-wall.packages.${pkgs.stdenv.hostPlatform.system}.default
     wineWow64Packages.stable
     wdisplays
     pcsx2
