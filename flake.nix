@@ -47,7 +47,7 @@
          ./configuration.nix
          ./modules/desktop/noctalia.nix
          ./modules/desktop/cachykernel.nix
-         #./modules/desktop/skwd.nix
+         ./modules/desktop/skwd.nix
           home-manager.nixosModules.home-manager
           mangowm.nixosModules.mango
           inputs.qylock.nixosModules.default
