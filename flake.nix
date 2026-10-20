@@ -50,7 +50,7 @@
         modules = [
          ./configuration.nix
          ./modules/desktop/noctalia.nix
-         #./modules/desktop/cachykernel.nix
+         ./modules/desktop/cachykernel.nix
           home-manager.nixosModules.home-manager
           mangowm.nixosModules.mango
           inputs.qylock.nixosModules.default
