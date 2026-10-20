@@ -51,7 +51,6 @@
     zed-editor
     libreoffice-stable
     qalculate-gtk
-    openlogi
     vscodium
   ] ++ (if device == "thinkpad" then [
     foot

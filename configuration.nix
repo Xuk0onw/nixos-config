@@ -6,7 +6,7 @@
   if hw_file == "thinkpad" then
     pkgs.linuxPackages_libre
   else
-    pkgs.linuxPackages_zen;
+    pkgs.linuxPackages_latest;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   imports =
   [
