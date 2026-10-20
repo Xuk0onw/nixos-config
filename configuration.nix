@@ -6,7 +6,7 @@
   if hw_file == "thinkpad" then
     pkgs.linuxPackages_libre
   else
-    pkgs.linuxPackages_zen;
+    pkgs.linuxPackages;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   imports =
   [
@@ -22,7 +22,7 @@
     ./modules/network.nix
     ./modules/optimisation.nix
     ./modules/audio.nix
-    ./modules/lab.nix
+    #./modules/lab.nix
     ./modules/olama.nix
     ./modules/git.nix
   ]
