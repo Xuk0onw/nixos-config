@@ -22,7 +22,7 @@
     ./modules/network.nix
     ./modules/optimisation.nix
     ./modules/audio.nix
-    #./modules/lab.nix
+    ./modules/lab.nix
     ./modules/olama.nix
     ./modules/git.nix
   ]

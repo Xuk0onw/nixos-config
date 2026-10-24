@@ -253,11 +253,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1792851669,
-        "narHash": "sha256-sf4VTvUHAqZgqINNa4fwrzqwTZene4onK55b7M3qNyE=",
+        "lastModified": 1792856955,
+        "narHash": "sha256-G+DZhXnybjKLxQsXZVUNhJQ0oFgclOyux4zYI0c3FKg=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "5c15bb063e03514f707a0e23a46495bb3fbd966b",
+        "rev": "125f2c1b3ddccf591fe8d4d9d86d1171913ba64a",
         "type": "github"
       },
       "original": {
@@ -325,7 +325,6 @@
       },
       "original": {
         "owner": "xddxdd",
-        "ref": "release",
         "repo": "nix-cachyos-kernel",
         "type": "github"
       }
@@ -549,11 +548,11 @@
       },
       "locked": {
         "dir": "packaging",
-        "lastModified": 1792829973,
-        "narHash": "sha256-jNY73JUMyAZ5FsWcztet/+qXCWpRsKVQBtkyrtE/rDY=",
+        "lastModified": 1792857082,
+        "narHash": "sha256-7Us0H4UUPLe+c8s6Neiczosb8ivROc7a/gFvLfgvnb4=",
         "owner": "AprilNEA",
         "repo": "OpenLogi",
-        "rev": "7eaba882d84784f4ab2eb95bb3ef6fd8af968465",
+        "rev": "4ca1e84ef1c2a7f0d934120dde1a1e04d4dc8c5a",
         "type": "github"
       },
       "original": {

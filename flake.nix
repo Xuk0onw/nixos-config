@@ -4,7 +4,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     qylock.url = "github:Darkkal44/qylock";
-    nix-cachyos-kernel.url ="github:xddxdd/nix-cachyos-kernel/release";
+    nix-cachyos-kernel.url ="github:xddxdd/nix-cachyos-kernel";
     noctalia.url = "github:noctalia-dev/noctalia/cachix";
     skwd-wall.url = "github:liixini/skwd-wall";
     llm-agents.url = "github:numtide/llm-agents.nix";
@@ -50,7 +50,7 @@
         modules = [
          ./configuration.nix
          ./modules/desktop/noctalia.nix
-         #./modules/desktop/cachykernel.nix
+         ./modules/desktop/cachykernel.nix
           home-manager.nixosModules.home-manager
           mangowm.nixosModules.mango
           inputs.qylock.nixosModules.default
