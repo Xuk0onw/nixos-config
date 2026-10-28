@@ -15,7 +15,7 @@
   };
 
   services.ollama = {
-    enable = true;
+    enable = false;
     package = pkgs.ollama-cuda;
     loadModels = [ "gemma4:e4b" ];
   };
