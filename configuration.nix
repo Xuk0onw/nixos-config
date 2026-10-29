@@ -23,7 +23,6 @@
     ./modules/optimisation.nix
     ./modules/audio.nix
     ./modules/lab.nix
-    ./modules/olama.nix
     ./modules/git.nix
   ]
   ++ lib.optionals (hw_file != "thinkpad") [
@@ -31,6 +30,7 @@
     ./modules/desktop/games.nix
     ./modules/desktop/tablet.nix
     ./modules/obs.nix
+    ./modules/olama.nix
   ];
 
   powerManagement = {
