@@ -1,7 +1,7 @@
 {
   description = "Xjle NixOS";
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     qylock.url = "github:Darkkal44/qylock";
     nix-cachyos-kernel.url ="github:xddxdd/nix-cachyos-kernel";

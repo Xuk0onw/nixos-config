@@ -66,7 +66,7 @@
   programs.kdeconnect.enable = true;
   programs.dconf.enable = true;
   programs.bash.enable = true;
-  programs.mango.enable = false;
+  programs.mango.enable = true;
   programs.river-classic.enable = false;
   programs.nix-ld.enable = true;
   programs.openlogi.enable = true;

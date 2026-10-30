@@ -18,7 +18,7 @@
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
   services.displayManager.defaultSession = lib.mkForce "plasma";
-  services.open-webui.enable = true;
+  #services.open-webui.enable = true
 
   services.pipewire = {
       enable = true;
