@@ -4,7 +4,7 @@
   nixpkgs.config.allowUnfree = true;
   boot.kernelPackages =
   if hw_file == "thinkpad" then
-    pkgs.linuxPackages_libre
+    pkgs.linuxPackages_xanmod
   else
     pkgs.linuxPackages_zen;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
