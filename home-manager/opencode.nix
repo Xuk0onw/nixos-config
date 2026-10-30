@@ -1,7 +1,12 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   xdg.configFile."opencode/opencode.jsonc".source = ./config/opencode/opencode.jsonc;
+
+  home.packages = with pkgs; [
+    uv
+    biome
+  ];
 
   nix.settings = {
     extra-substituters = [
