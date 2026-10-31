@@ -9,7 +9,7 @@
   // === Plugins ===
   // Disabled while testing local models (extra prompt/tool overhead).
   // Re-add "@dietrichgebert/ponytail" once local tool calling works.
-  "plugins": [],
+  "plugin": ["@dietrichgebert/ponytail"],
 
   // === Providers ===
   // NOTE: limit.context only tells OpenCode the size. Ollama must ALSO be set
