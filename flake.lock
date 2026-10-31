@@ -546,11 +546,11 @@
       },
       "locked": {
         "dir": "packaging",
-        "lastModified": 1793423373,
-        "narHash": "sha256-DPzrEkRgQwyKkK9Fw5OmYm85P85dx3DlscYMRjmCJMA=",
+        "lastModified": 1793452024,
+        "narHash": "sha256-Ea+kMtoumCzZFyfEkNcMdNd8XcE0ZkrnlYq7FBQ4dRE=",
         "owner": "AprilNEA",
         "repo": "OpenLogi",
-        "rev": "3eb0a5b1dbbc9bacc79b29d61c410022e3737aa9",
+        "rev": "2c8cdcc6d71bacb66c5e4b40c0e85397d9e9b7f6",
         "type": "github"
       },
       "original": {
