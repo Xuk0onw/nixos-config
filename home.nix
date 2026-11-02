@@ -47,7 +47,6 @@
     gimp
     qt6.qtsvg
     vlc
-    obsidian
     zed-editor
     libreoffice-stable
     qalculate-gtk

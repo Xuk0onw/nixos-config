@@ -9,6 +9,7 @@
     packages = with pkgs; [
       tree
       bitwarden-desktop
+      obsidian
     ];
   };
 }
