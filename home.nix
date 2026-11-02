@@ -63,12 +63,9 @@
     inputs.skwd-wall.packages.${pkgs.stdenv.hostPlatform.system}.default
     wineWow64Packages.stable
     wdisplays
-    pcsx2
     winetricks
     kitty
-    heroic
     discord
-    lutris
     winboat
   ]);
 

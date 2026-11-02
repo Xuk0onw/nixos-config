@@ -3,7 +3,10 @@
 {
   environment.systemPackages = with pkgs; [
     steamcmd
-    protonup-qt
+    lutris
+    pcsx2
+    heroic
+    itch
     protonplus
   ];
 

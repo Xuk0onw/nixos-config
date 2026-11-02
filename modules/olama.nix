@@ -32,6 +32,7 @@
       "gemma4:e4b"
       "qwen3.5:9b"
       "qwen3:8b"
+      "Gemma-4-Uncensored-HauhauCS-Aggressive:e4b"
     ];
   };
 }

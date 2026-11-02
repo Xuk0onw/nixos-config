@@ -8,8 +8,8 @@
     extraGroups = [ "wheel" "libvirtd" "docker" "networkmanager" ];
     packages = with pkgs; [
       tree
-      bitwarden-desktop
       obsidian
+      bitwarden-desktop
     ];
   };
 }
