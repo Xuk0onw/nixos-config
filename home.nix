@@ -64,6 +64,7 @@
     wineWow64Packages.stable
     wdisplays
     winetricks
+    lutris
     kitty
     discord
     winboat

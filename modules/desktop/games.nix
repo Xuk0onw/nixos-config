@@ -3,7 +3,6 @@
 {
   environment.systemPackages = with pkgs; [
     steamcmd
-    lutris
     pcsx2
     heroic
     itch
