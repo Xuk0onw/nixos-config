@@ -5,7 +5,6 @@
 
   home.packages = with pkgs; [
     uv
-    biome
   ];
 
   nix.settings = {
