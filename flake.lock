@@ -244,6 +244,26 @@
         "type": "github"
       }
     },
+    "inir": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1794174273,
+        "narHash": "sha256-qx5JmJicTYQu+JMnj7zDS2RryBec0/NoOxIgIxhXwtY=",
+        "owner": "snowarch",
+        "repo": "inir",
+        "rev": "ae00074071c40b4037b994b534bf3a7a8a9f17b3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "snowarch",
+        "repo": "inir",
+        "type": "github"
+      }
+    },
     "llm-agents": {
       "inputs": {
         "bun2nix": "bun2nix",
@@ -603,6 +623,7 @@
       "inputs": {
         "helium": "helium",
         "home-manager": "home-manager",
+        "inir": "inir",
         "llm-agents": "llm-agents",
         "mac-style-plymouth": "mac-style-plymouth",
         "mangowm": "mangowm",

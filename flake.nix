@@ -29,15 +29,19 @@
     mangowm = {
       url = "github:mangowm/mango";
         inputs.nixpkgs.follows = "nixpkgs";
-      };
-      helium = {
-        url = "github:schembriaiden/helium-browser-nix-flake";
+    };
+    helium = {
+      url = "github:schembriaiden/helium-browser-nix-flake";
+         inputs.nixpkgs.follows = "nixpkgs";
+    };
+    openlogi = {
+        url = "github:AprilNEA/OpenLogi?dir=packaging";
           inputs.nixpkgs.follows = "nixpkgs";
-      };
-      openlogi = {
-          url = "github:AprilNEA/OpenLogi?dir=packaging";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
+    };
+    inir = {
+        url = "github:snowarch/inir";
+          inputs.nixpkgs.follows = "nixpkgs";
+       };
     };
 
   outputs = { self, nixpkgs, nixvim, home-manager, mangowm, noctalia, qylock, openlogi, ... }@inputs: {

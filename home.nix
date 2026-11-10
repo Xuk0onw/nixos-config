@@ -22,7 +22,7 @@
     ./home-manager/home-programs.nix
     ./home-manager/home-services.nix
     ./home-manager/gtk-qt.nix
-    ./home-manager/river.nix
+    ./home-manager/inir.nix
   ] ++ (if device == "thinkpad" then [
     ./home-manager/foot.nix
     ./home-manager/fuzzel.nix
