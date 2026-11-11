@@ -2,6 +2,10 @@
 
 set +e
 
+# Session target (starts DMS and other Mango-only services)
+systemctl --user import-environment DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE
+systemctl --user start mango-session.target
+
 # Portal
 xdg-desktop-portal-wlr >/dev/null 2>&1 &
 

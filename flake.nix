@@ -7,6 +7,7 @@
     noctalia.url = "github:noctalia-dev/noctalia/cachix";
     skwd-wall.url = "github:liixini/skwd-wall";
     llm-agents.url = "github:numtide/llm-agents.nix";
+    umbriel.url = "github:noctalia-dev/umbriel";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -38,9 +39,9 @@
         url = "github:AprilNEA/OpenLogi?dir=packaging";
           inputs.nixpkgs.follows = "nixpkgs";
     };
-    inir = {
-        url = "github:snowarch/inir";
-          inputs.nixpkgs.follows = "nixpkgs";
+    dms = {
+      url = "github:duxlabs-dev/dux-shell/stable";
+        inputs.nixpkgs.follows = "nixpkgs";
        };
     };
 
@@ -54,6 +55,7 @@
          ./configuration.nix
          ./modules/desktop/noctalia.nix
          ./modules/desktop/cachykernel.nix
+         ./modules/desktop/umbriel.nix
           home-manager.nixosModules.home-manager
           mangowm.nixosModules.mango
           inputs.qylock.nixosModules.default

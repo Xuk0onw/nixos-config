@@ -69,5 +69,5 @@
   programs.mango.enable = true;
   programs.river-classic.enable = false;
   programs.nix-ld.enable = true;
-  programs.openlogi.enable = false;
+  programs.umbriel.enable = true;
 }

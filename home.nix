@@ -22,7 +22,8 @@
     ./home-manager/home-programs.nix
     ./home-manager/home-services.nix
     ./home-manager/gtk-qt.nix
-    ./home-manager/inir.nix
+    ./home-manager/umbriel.nix
+    ./home-manager/dms.nix
   ] ++ (if device == "thinkpad" then [
     ./home-manager/foot.nix
     ./home-manager/fuzzel.nix
