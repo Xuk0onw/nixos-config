@@ -52,7 +52,7 @@
     libreoffice-stable
     qalculate-gtk
     vscodium
-    spotiflac
+    tuios
   ] ++ (if device == "thinkpad" then [
     foot
     fuzzel

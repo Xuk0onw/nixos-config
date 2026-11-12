@@ -35,17 +35,13 @@
       url = "github:schembriaiden/helium-browser-nix-flake";
          inputs.nixpkgs.follows = "nixpkgs";
     };
-    openlogi = {
-        url = "github:AprilNEA/OpenLogi?dir=packaging";
-          inputs.nixpkgs.follows = "nixpkgs";
-    };
     dms = {
       url = "github:duxlabs-dev/dux-shell/stable";
         inputs.nixpkgs.follows = "nixpkgs";
        };
     };
 
-  outputs = { self, nixpkgs, nixvim, home-manager, mangowm, noctalia, qylock, openlogi, ... }@inputs: {
+  outputs = { self, nixpkgs, nixvim, home-manager, mangowm, noctalia, qylock, ... }@inputs: {
     nixosConfigurations = {
 
       desktop = nixpkgs.lib.nixosSystem {
@@ -56,10 +52,10 @@
          ./modules/desktop/noctalia.nix
          ./modules/desktop/cachykernel.nix
          ./modules/desktop/umbriel.nix
+         inputs.umbriel.nixosModules.default
           home-manager.nixosModules.home-manager
           mangowm.nixosModules.mango
           inputs.qylock.nixosModules.default
-          openlogi.nixosModules.default
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
