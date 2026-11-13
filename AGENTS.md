@@ -2,7 +2,7 @@
 
 Personal NixOS flake in `/etc/nixos`, single user (`xjle`), two hosts. The flake uses the
 dendritic pattern: `flake.nix` is a thin entrypoint, `import-tree` auto-imports every
-`.nix` file under `modules/`, and every non-entry file is a flake-parts module exporting
+`.nix` file under `modules/`, and each non-entry file is a flake-parts module exporting
 `flake.modules.nixos.*` and/or `flake.modules.homeManager.*`.
 
 | Flake attr | `networking.hostName` | Hardware |
@@ -14,34 +14,28 @@ dendritic pattern: `flake.nix` is a thin entrypoint, `import-tree` auto-imports 
 
 - Rebuild/activate: `sudo nixos-rebuild switch --flake /etc/nixos#desktop` (or `#thinkpad`)
 - Validate without activating: `sudo nixos-rebuild build --flake /etc/nixos#desktop`
-- Fast eval: `nix eval --raw /etc/nixos#nixosConfigurations.desktop.config.networking.hostName`.
-  `--raw` only works for strings; use `--json` for booleans (`...programs.umbriel.enable`).
 - Full config eval (catches module errors without building):
   `nix eval --raw /etc/nixos#nixosConfigurations.desktop.config.system.build.toplevel.drvPath`
+- Fast eval: `nix eval --raw /etc/nixos#nixosConfigurations.desktop.config.networking.hostName`.
+  `--raw` only works for strings; use `--json` for booleans.
 - Update inputs: `nix flake update`; one input: `nix flake update <name>`
 - Agent `sudo` is blocked by permission rules; hand `switch`/activation to the user.
-- No CI, tests, lint, or formatter config. `nixfmt` is NOT installed; if needed run
-  `nix run nixpkgs#nixfmt-rfc-style -- <file>`.
-- The `home-manager` CLI is NOT installed. Home-manager is only used as a NixOS module,
-  so all changes (system and home) go through `nixos-rebuild`.
+- No CI, tests, lint, or formatter config. `nixfmt` and the `home-manager` CLI are NOT
+  installed; use `nix run nixpkgs#nixfmt-rfc-style -- <file>` if formatting is needed.
+  Home-manager is only used as a NixOS module, so all changes go through `nixos-rebuild`.
 
-## Critical: flakes only see git-tracked files
+## Dendritic rules
 
-New `.nix` files are invisible to `nixos-rebuild --flake` until `git add`ed.
-
-## Root nixpkgs
-
-- `flake.nix` uses a single `nixpkgs` input (`nixos-unstable`); there is no separate
-  `nixpkgs-unstable` input.
-- All `inputs.*.nixpkgs.follows = "nixpkgs"` and `nixpkgs.lib.nixosSystem` resolve root
-  `nixpkgs` from the registry, not from `flake.nix`. On this machine it is the `nixpkgs`
-  node in `flake.lock` (currently nixpkgs-unstable).
-- Therefore `nix flake update nixpkgs` updates the real package set. Keep the `nixpkgs`
-  entry in `flake.lock`.
-- To add stable, create an independent input (do NOT set `inputs.nixpkgs.follows`) and
-  expose it via an overlay, e.g. `pkgs.stable`. Never mix NixOS modules across releases.
-- `system.stateVersion = "26.11"` (NixOS and home-manager) makes unstable the base; a
-  26.05 stable base would be a downgrade.
+- New files are invisible to `nixos-rebuild --flake` until `git add`ed.
+- `import-tree` only scans `modules/`; underscore-prefixed dirs are skipped.
+- Config must live inside `flake.modules.nixos.<name>` or
+  `flake.modules.homeManager.<name>`. Bare top-level NixOS/HM options are not applied.
+- Loading a file is not enabling it: a host only gets an aspect if an aggregator or host
+  module lists its name (e.g. `foo` in `modules/nixos/common.nix` or `desktop.nix`).
+- Filename and aspect name may differ (`olama.nix` exports `ollama`); aggregators use the
+  aspect name.
+- Outer wrappers use `{ inputs, config, ... }` when they need flake inputs or other
+  aspects. There are no `specialArgs`; `inputs` is captured lexically.
 
 ## Layout
 
@@ -52,72 +46,73 @@ New `.nix` files are invisible to `nixos-rebuild --flake` until `git add`ed.
 - `modules/hosts/*.nix` — `flake.nixosConfigurations.<host>`; each installs one named
   aspect (`config.flake.modules.nixos.desktop` / `.thinkpad`).
 - `modules/nixos/` — NixOS aspects. `common.nix`, `desktop.nix`, and `thinkpad.nix` are
-  aggregators; all other files are feature aspects (`flake.modules.nixos.<name>`).
-- `modules/nixos/desktop/` — desktop-only NixOS aspects (`nvidia`, `games`, `tablet`,
-  `obs`, `olama`, `cachykernel`, `noctalia`, `umbriel`, `skwd`).
+  aggregators; `settings.nix` holds the main shared system config, `home-manager.nix`
+  holds the HM wiring.
+- `modules/nixos/desktop/` — desktop-only aspects (`nvidia`, `games`, `tablet`, `obs`,
+  `ollama`, `cachykernel`, `noctalia`, `umbriel`, `skwd`).
 - `modules/nixos/hardware-*.nix` — point at the untouched `devices/*.nix` files.
-- `modules/home/` — home-manager aspects (`flake.modules.homeManager.<name>`).
-  `base.nix`, `desktop.nix`, and `thinkpad.nix` are aggregators.
-- `modules/home/config/` — plain config files copied via `xdg.configFile`; edits only
+- `modules/home/` — home-manager aspects. `base.nix`, `desktop.nix`, and `thinkpad.nix`
+  are aggregators; `user.nix` holds the old `home.nix` basics.
+- `modules/home/config/` — files installed via `xdg.configFile` (store-backed); edits only
   reach `~/.config` after a rebuild.
 - `devices/*.nix` — generated by `nixos-generate-config`; do not edit.
-- Adding a `.nix` file under `modules/` auto-imports it, but a host only gets it if the
-  relevant aggregator/module imports its name. Do not use underscore-prefixed dirs unless
-  you want `import-tree` to skip them.
 
-## Three Wayland stacks
+## Root nixpkgs
 
-- **Niri + Noctalia**: `programs.niri.enable` (`modules/nixos/programs.nix`);
-  `modules/home/niri.nix` exposes `niri-desktop` / `niri-thinkpad`, which write
-  `~/.config/niri/config.kdl`; `modules/home/config/niri.kdl` has
-  `spawn-at-startup "noctalia"`.
-- **Mango + DankMaterialShell**: `programs.mango.enable = true`;
-  `modules/home/dms.nix` imports `inputs.dms` / `inputs.mangowm` and targets
-  `mango-session.target`.
-- **Umbriel**: `programs.umbriel.enable = true`; `modules/home/umbriel.nix` imports the
-  HM module. Umbriel needs its NixOS module for `umbriel.service` and the login session;
-  the HM module alone only installs the package/config. `programs.umbriel.settings` is
-  null, so Umbriel writes `~/.config/umbriel/` on first login — setting it in HM would
-  block that.
-- Desktop default session is Plasma 6 via `lib.mkForce "plasma"`
-  (`modules/nixos/services.nix`); hyprland and river-classic are off.
+- `flake.nix` has one `nixpkgs` input (`nixos-unstable`); `nix flake update nixpkgs`
+  updates the real package set.
+- Not every input follows root `nixpkgs` (`nixvim`, `noctalia`, `umbriel`, `qylock`,
+  `skwd-wall`, `llm-agents`, the cachyos kernel); update those separately.
+- `system.stateVersion` is `"26.11"` for NixOS and home-manager; do not downgrade.
+- A stable set needs an independent input plus an overlay; never mix NixOS modules across
+  releases.
 
 ## Device branching
 
-- No `hw_file` / `device` specialArgs. Host differences are named modules:
+- No `hw_file` / `device` specialArgs. Host differences are named aspects:
   `flake.modules.nixos.desktop` / `.thinkpad` and
   `flake.modules.homeManager.desktop` / `.thinkpad`.
+- Hostnames are set in `modules/nixos/{desktop,thinkpad}.nix`; kernels too: desktop uses
+  `linuxPackages_zen`, then `desktop/cachykernel.nix` `lib.mkForce`s the CachyOS zen4
+  kernel; thinkpad uses `linuxPackages_xanmod`.
 - Thinkpad gets foot/fuzzel/firefox and its own niri/wlogout variants; desktop gets
   kitty/rofi/opencode/helium/games/wine.
 - `modules/home/niri.nix` and `modules/home/wlogout.nix` generate both device variants
   from a shared `let` binding.
 
+## Three Wayland stacks
+
+- Niri/Mango/Umbriel are enabled in shared `programs.nix` for both hosts; the external
+  Mango/Umbriel NixOS modules are imported only by desktop, and their HM modules are in
+  shared `base`. Niri config variants are per-device.
+- **Niri + Noctalia**: `programs.niri.enable`; `modules/home/niri.nix` exposes
+  `niri-desktop` / `niri-thinkpad`, writing `~/.config/niri/config.kdl`;
+  `modules/home/config/niri.kdl` spawns `noctalia` and `skwd-walld`.
+- **Mango + DankMaterialShell**: `modules/home/dms.nix` imports `inputs.dms` /
+  `inputs.mangowm` and targets `mango-session.target`.
+- **Umbriel**: the NixOS module provides `umbriel.service` and the login session; the HM
+  module installs the package/config. `programs.umbriel.settings` is left unset so
+  Umbriel writes `~/.config/umbriel/` on first login; setting it in HM blocks that.
+- Default session is Plasma 6 via `lib.mkForce "plasma"` (`modules/nixos/services.nix`);
+  hyprland and river-classic are off.
+
 ## Gotchas
 
-- Hostnames are set in `modules/nixos/desktop.nix` (`nixos`) and
-  `modules/nixos/thinkpad.nix` (`thinkpad`).
-- Desktop kernel: `modules/nixos/desktop.nix` sets `linuxPackages_zen`, then
-  `modules/nixos/desktop/cachykernel.nix` `lib.mkForce`s the CachyOS zen4 kernel.
-  Thinkpad kernel is set in `modules/nixos/thinkpad.nix` (`linuxPackages_xanmod`).
-- `programs.qylock` is enabled in `modules/nixos/settings.nix` for both hosts;
-  `inputs.qylock.nixosModules.default` is imported by `modules/nixos/common.nix`.
+- `programs.qylock` is enabled in `settings.nix` for both hosts;
+  `inputs.qylock.nixosModules.default` is imported by `common.nix`.
 - `devices/thinkpad.nix` generates an invalid empty swap device;
   `modules/nixos/thinkpad.nix` forces `swapDevices = [ ]`.
 - Bootloader is limine (`modules/nixos/boot.nix`), not systemd-boot/grub. It hardcodes a
   Windows 11 EFI entry, adds `amdgpu` to initrd on both hosts, and uses plymouth theme
-  `mac-style`. The desktop-only `amdgpu.dcdebugmask` param lives in
-  `modules/nixos/desktop.nix`.
+  `mac-style`. Desktop-only `amdgpu.dcdebugmask` lives in `modules/nixos/desktop.nix`.
 - These aspects are defined but NOT imported by any host — editing them has no effect:
   `modules/nixos/searxng.nix`, `modules/nixos/desktop/skwd.nix`,
   `modules/home/zsh.nix`, `modules/home/zathura.nix`. The `skwd-wall` flake is still used
   directly in `modules/home/desktop.nix`; zathura is installed via nixvim's
   `extraPackages`.
-- `modules/home/opencode.nix` is desktop-only: it copies
-  `modules/home/config/opencode/opencode.jsonc` to `~/.config/opencode/` (plain copy,
-  needs a rebuild) and adds `uv` plus the numtide substituter. The opencode package
-  itself comes from `modules/home/desktop.nix` via `llm-agents`.
-- `import-tree` and `flake-parts` are already inputs. `flake.modules.*` requires the
-  `inputs.flake-parts.flakeModules.modules` import in `modules/flake-parts.nix`.
-- `nix flake update` can fail with `insufficient permission for adding an object to
-  repository database .git/objects` if a `.git/objects/*` subdir is root-owned. Prefer
-  `sudo chown -R xjle:users /etc/nixos/.git`; agent sudo is blocked.
+- `modules/home/opencode.nix` is desktop-only: it installs
+  `modules/home/config/opencode/opencode.jsonc` via `xdg.configFile.source` (store-backed,
+  needs a rebuild) and adds `uv` plus the numtide substituter. The opencode package comes
+  from `modules/home/desktop.nix` via `llm-agents`.
+- `.git/objects/e6.root` is a root-owned leftover; git ignores it. If `git add` fails on
+  a root-owned `.git/objects/*` dir, the user must chown it.
