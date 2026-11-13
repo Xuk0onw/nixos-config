@@ -1,0 +1,37 @@
+{ ... }:
+
+{
+  flake.modules.nixos.ollama = { pkgs, ... }: {
+    nix.settings = {
+      extra-substituters = [
+        "https://cache.numtide.com"
+        "https://cache.nixos-cuda.org"
+      ];
+
+      extra-trusted-public-keys = [
+        "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
+        "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
+      ];
+    };
+
+    services.ollama = {
+      enable = true;
+      package = pkgs.ollama-cuda;
+
+      environmentVariables = {
+        OLLAMA_NUM_PARALLEL = "1";
+        OLLAMA_MAX_LOADED_MODELS = "1";
+        OLLAMA_FLASH_ATTENTION = "1";
+        OLLAMA_KV_CACHE_TYPE = "q8_0";
+        OLLAMA_CONTEXT_LENGTH = "32768";
+      };
+
+      loadModels = [
+        "gemma4:e4b"
+        "qwen3.5:9b"
+        "qwen3:8b"
+        "Gemma-4-Uncensored-HauhauCS-Aggressive:e4b"
+      ];
+    };
+  };
+}
