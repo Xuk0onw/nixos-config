@@ -1,6 +1,7 @@
 {
   description = "Xjle NixOS";
   inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     qylock.url = "github:Darkkal44/qylock";
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
@@ -8,6 +9,7 @@
     skwd-wall.url = "github:liixini/skwd-wall";
     llm-agents.url = "github:numtide/llm-agents.nix";
     umbriel.url = "github:noctalia-dev/umbriel";
+    flake-parts.url = "github:hercules-ci/flake-parts";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -41,7 +43,7 @@
        };
     };
 
-  outputs = { self, nixpkgs, nixvim, home-manager, mangowm, noctalia, qylock, ... }@inputs: {
+  outputs = { self, nixpkgs, nixvim, home-manager, mangowm, noctalia, qylock, flake-parts, ... }@inputs: {
     nixosConfigurations = {
 
       desktop = nixpkgs.lib.nixosSystem {
