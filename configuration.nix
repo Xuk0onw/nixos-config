@@ -42,6 +42,8 @@
   algorithm = "zstd";
   memoryPercent = 50;
 };
+  # devices/thinkpad.nix generates an invalid empty swap device
+  swapDevices = lib.mkForce [ ];
   services.tlp = {
     enable = true;
 

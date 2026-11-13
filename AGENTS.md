@@ -24,15 +24,15 @@ Personal NixOS flake in `/etc/nixos`, single user (`xjle`), two hosts in `flake.
 
 New `.nix` files are invisible to `nixos-rebuild --flake` until `git add`ed.
 
-## Root nixpkgs is implicit
+## Root nixpkgs
 
-- `flake.nix` declares `nixpkgs-unstable` but nothing references it.
+- `flake.nix` uses a single `nixpkgs` input (`nixos-unstable`); there is no separate
+  `nixpkgs-unstable` input.
 - All `inputs.*.nixpkgs.follows = "nixpkgs"` and `nixpkgs.lib.nixosSystem` resolve root
   `nixpkgs` from the registry, not from `flake.nix`. On this machine it is the `nixpkgs`
   node in `flake.lock` (currently nixpkgs-unstable).
-- Therefore `nix flake update nixpkgs` updates the real package set; updating
-  `nixpkgs-unstable` changes nothing the build uses. Keep the `nixpkgs` entry in
-  `flake.lock`.
+- Therefore `nix flake update nixpkgs` updates the real package set. Keep the `nixpkgs`
+  entry in `flake.lock`.
 - To add stable, create an independent input (do NOT set `inputs.nixpkgs.follows`) and
   expose it via an overlay, e.g. `pkgs.stable`. Never mix NixOS modules across releases.
 - `system.stateVersion = "26.11"` (NixOS and home-manager) makes unstable the base; a
@@ -40,6 +40,8 @@ New `.nix` files are invisible to `nixos-rebuild --flake` until `git add`ed.
 
 ## Layout
 
+- `flake.nix` outputs are built with `flake-parts`; both hosts come from one `mkHost`
+  helper sharing the home-manager wiring, with per-host modules passed via `extraModules`.
 - `configuration.nix` — shared entrypoint; imports `devices/${hw_file}.nix` plus an
   explicit module list. Modules are NOT auto-discovered: adding a file under
   `modules/` has no effect until it is added to `imports`.
@@ -80,8 +82,11 @@ New `.nix` files are invisible to `nixos-rebuild --flake` until `git add`ed.
 
 - Desktop kernel: `configuration.nix` sets `linuxPackages_zen`, then
   `modules/desktop/cachykernel.nix` `lib.mkForce`s the CachyOS zen4 kernel. Thinkpad
-  kernel is set twice to the same `linuxPackages_xanmod` (`configuration.nix` and
-  `flake.nix`), so harmless but redundant.
+  kernel is set once in `configuration.nix` (`linuxPackages_xanmod`).
+- `programs.qylock` is enabled in `configuration.nix` for both hosts, so
+  `inputs.qylock.nixosModules.default` is imported in the shared `mkHost` block.
+- `devices/thinkpad.nix` generates an invalid empty swap device; `configuration.nix`
+  forces `swapDevices = [ ]`.
 - Bootloader is limine (`modules/boot.nix`), not systemd-boot/grub. It hardcodes a
   Windows 11 EFI entry, adds `amdgpu` to initrd on both hosts, and uses plymouth theme
   `mac-style`.
