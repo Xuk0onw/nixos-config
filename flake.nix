@@ -13,17 +13,17 @@
 
     home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
+        inputs.nixpkgs.follows = "nixpkgs";
     };
     mac-style-plymouth = {
-      url = "github:SergioRibera/s4rchiso-plymouth-theme";
-      inputs.nixpkgs.follows = "nixpkgs";
+        url = "github:SergioRibera/s4rchiso-plymouth-theme";
+          inputs.nixpkgs.follows = "nixpkgs";
     };
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        home-manager.follows = "home-manager";
+        inputs = {
+          nixpkgs.follows = "nixpkgs";
+            home-manager.follows = "home-manager";
       };
     };
     nixvim = {
@@ -31,15 +31,15 @@
     };
     mangowm = {
       url = "github:mangowm/mango";
-      inputs.nixpkgs.follows = "nixpkgs";
+        inputs.nixpkgs.follows = "nixpkgs";
     };
     helium = {
       url = "github:schembriaiden/helium-browser-nix-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
+        inputs.nixpkgs.follows = "nixpkgs";
     };
     dms = {
       url = "github:duxlabs-dev/dux-shell/stable";
-      inputs.nixpkgs.follows = "nixpkgs";
+        inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
