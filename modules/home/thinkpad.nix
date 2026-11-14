@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, inputs, ... }:
 
 {
   flake.modules.homeManager.thinkpad = { pkgs, ... }: {
@@ -10,6 +10,8 @@
     ];
 
     home.packages = with pkgs; [
+      inputs.skwd-wall.packages.${pkgs.stdenv.hostPlatform.system}.plasma
+      inputs.skwd-wall.packages.${pkgs.stdenv.hostPlatform.system}.default
       foot
       fuzzel
       firefox
