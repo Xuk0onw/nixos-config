@@ -49,7 +49,7 @@ dendritic pattern: `flake.nix` is a thin entrypoint, `import-tree` auto-imports 
   aggregators; `settings.nix` holds the main shared system config, `home-manager.nix`
   holds the HM wiring.
 - `modules/nixos/desktop/` — desktop-only aspects (`nvidia`, `games`, `tablet`, `obs`,
-  `ollama`, `cachykernel`, `noctalia`, `umbriel`, `skwd`).
+  `ollama`, `cachykernel`, `noctalia`, `umbriel`).
 - `modules/nixos/hardware-*.nix` — point at the untouched `devices/*.nix` files.
 - `modules/home/` — home-manager aspects. `base.nix`, `desktop.nix`, and `thinkpad.nix`
   are aggregators; `user.nix` holds the old `home.nix` basics.
@@ -105,11 +105,6 @@ dendritic pattern: `flake.nix` is a thin entrypoint, `import-tree` auto-imports 
 - Bootloader is limine (`modules/nixos/boot.nix`), not systemd-boot/grub. It hardcodes a
   Windows 11 EFI entry, adds `amdgpu` to initrd on both hosts, and uses plymouth theme
   `mac-style`. Desktop-only `amdgpu.dcdebugmask` lives in `modules/nixos/desktop.nix`.
-- These aspects are defined but NOT imported by any host — editing them has no effect:
-  `modules/nixos/searxng.nix`, `modules/nixos/desktop/skwd.nix`,
-  `modules/home/zsh.nix`, `modules/home/zathura.nix`. The `skwd-wall` flake is still used
-  directly in `modules/home/desktop.nix`; zathura is installed via nixvim's
-  `extraPackages`.
 - `modules/home/opencode.nix` is desktop-only: it installs
   `modules/home/config/opencode/opencode.jsonc` via `xdg.configFile.source` (store-backed,
   needs a rebuild) and adds `uv` plus the numtide substituter. The opencode package comes
