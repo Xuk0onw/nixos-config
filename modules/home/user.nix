@@ -17,7 +17,6 @@
       vista-fonts
       qt6.qt5compat
       xdg-desktop-portal-gtk
-      google-fonts
       corefonts
       inter
       snapshot

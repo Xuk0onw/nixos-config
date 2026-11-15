@@ -8,6 +8,7 @@
       kitty
       rofi
       opencode
+      inir
     ];
 
     home.packages = [
