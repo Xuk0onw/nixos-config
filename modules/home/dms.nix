@@ -11,7 +11,7 @@
     ];
 
     wayland.windowManager.mango = {
-      enable = true;
+      enable = false;
       systemd.enable = true;
     };
 
