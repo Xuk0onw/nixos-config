@@ -5,10 +5,10 @@ dendritic pattern: `flake.nix` is a thin entrypoint, `import-tree` auto-imports 
 `.nix` file under `modules/`, and each non-entry file is a flake-parts module exporting
 `flake.modules.nixos.*` and/or `flake.modules.homeManager.*`.
 
-| Flake attr | `networking.hostName` | Hardware |
-|---|---|---|
-| `desktop` | `nixos` (NOT `desktop`) | AMD + NVIDIA |
-| `thinkpad` | `thinkpad` | Intel |
+| Flake attr | `networking.hostName`   | Hardware     |
+| ---------- | ----------------------- | ------------ |
+| `desktop`  | `nixos` (NOT `desktop`) | AMD + NVIDIA |
+| `thinkpad` | `thinkpad`              | Intel        |
 
 ## Commands
 
@@ -80,21 +80,27 @@ dendritic pattern: `flake.nix` is a thin entrypoint, `import-tree` auto-imports 
 - `modules/home/niri.nix` and `modules/home/wlogout.nix` generate both device variants
   from a shared `let` binding.
 
-## Three Wayland stacks
+## Wayland stacks
 
-- Niri/Mango/Umbriel are enabled in shared `programs.nix` for both hosts; the external
-  Mango/Umbriel NixOS modules are imported only by desktop, and their HM modules are in
-  shared `base`. Niri config variants are per-device.
-- **Niri + Noctalia**: `programs.niri.enable`; `modules/home/niri.nix` exposes
-  `niri-desktop` / `niri-thinkpad`, writing `~/.config/niri/config.kdl`;
-  `modules/home/config/niri.kdl` spawns `noctalia` and `skwd-walld`.
-- **Mango + DankMaterialShell**: `modules/home/dms.nix` imports `inputs.dms` /
-  `inputs.mangowm` and targets `mango-session.target`.
+- Active: **Niri + Noctalia** and **Umbriel**, both enabled in shared `programs.nix` for
+  both hosts; the external Umbriel NixOS module is imported only by desktop, and the HM
+  modules live in shared `base`. Niri config variants are per-device:
+  `modules/home/niri.nix` exposes `niri-desktop` / `niri-thinkpad`, writing
+  `~/.config/niri/config.kdl`; `modules/home/config/niri.kdl` spawns `noctalia` and
+  `skwd-walld`.
 - **Umbriel**: the NixOS module provides `umbriel.service` and the login session; the HM
   module installs the package/config. `programs.umbriel.settings` is left unset so
   Umbriel writes `~/.config/umbriel/` on first login; setting it in HM blocks that.
+- **Mango + DankMaterialShell are disabled but still wired**: `programs.mango.enable =
+false` in `programs.nix` (the mangowm NixOS module is still imported by desktop), and
+  `modules/home/dms.nix` gates DMS on mango being enabled. Re-enable by flipping that
+  flag; the mango HM aspect still installs `~/.config/mango/`.
+- Desktop-only `inir` HM aspect rides the Umbriel session: upstream hardcodes
+  `niri.service`, so `modules/home/inir.nix` mkForces its systemd unit onto
+  `umbriel.service`, and mkForces iNiR's quickshell build so `bin/qs` doesn't collide
+  with DMS's.
 - Default session is Plasma 6 via `lib.mkForce "plasma"` (`modules/nixos/services.nix`);
-  hyprland and river-classic are off.
+  hyprland is off.
 
 ## Gotchas
 
@@ -109,5 +115,13 @@ dendritic pattern: `flake.nix` is a thin entrypoint, `import-tree` auto-imports 
   `modules/home/config/opencode/opencode.jsonc` via `xdg.configFile.source` (store-backed,
   needs a rebuild) and adds `uv` plus the numtide substituter. The opencode package comes
   from `modules/home/desktop.nix` via `llm-agents`.
+- nixvim is wired in two places: the NixOS module is imported only by thinkpad
+  (`modules/nixos/thinkpad.nix`), while the HM module is shared to all users via
+  `home-manager.sharedModules` (`modules/nixos/home-manager.nix`).
 - `.git/objects/e6.root` is a root-owned leftover; git ignores it. If `git add` fails on
   a root-owned `.git/objects/*` dir, the user must chown it.
+
+## user Noted
+
+the user always do the sudo nixos-rebuild switch --flake .#desktop Commands
+if you can skip the long build let the user do it
