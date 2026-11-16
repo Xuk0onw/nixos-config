@@ -8,13 +8,10 @@ output=$(mango -p 2>&1 | sed -r '
     s/[[:space:]]*$//            # 删除行尾空格
 ')
 
-# 设置通知图标
-icon="$HOME/.config/mango/wallpaper/mango.png"
-
 # 如果没有输出或输出为空，则退出
 if [[ -z "$output" ]]; then
     exit 0
 fi
 
 # 发送通知
-notify-send --urgency=critical --icon="$icon" "Mango Status" "$output"
+notify-send --urgency=critical "Mango Status" "$output"
