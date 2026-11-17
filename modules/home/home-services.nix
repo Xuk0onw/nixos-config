@@ -10,5 +10,7 @@
       musicDirectory = "/home/xjle/Music";
       network.startWhenNeeded = true;
     };
+
+    services.ssh-agent.enable = true;
   };
 }
