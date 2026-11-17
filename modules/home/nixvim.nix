@@ -26,7 +26,6 @@
           mini-diff
           incline-nvim
           codediff-nvim
-          tiny-cmdline-nvim
         ];
 
         extraConfigLuaPre = ''
@@ -97,6 +96,8 @@
           prettierd
           stylua
           shfmt
+          bash-language-server
+          pyright
         ];
 
         autoCmd = [
@@ -136,8 +137,67 @@
           enable = true;
         };
 
-        colorschemes.catppuccin = {
+        plugins.which-key = {
           enable = true;
+          settings.delay = 300;
+        };
+
+        plugins.nui.enable = true;
+
+        plugins.noice = {
+          enable = true;
+          settings.presets = {
+            bottom_search = true;
+            command_palette = true;
+            long_message_to_split = true;
+            lsp_doc_border = true;
+          };
+        };
+
+        plugins.neo-tree = {
+          enable = true;
+          settings = {
+            close_if_last_window = false;
+            enable_git_status = true;
+            enable_diagnostics = true;
+            window = {
+              width = 30;
+              position = "left";
+            };
+            filesystem = {
+              follow_current_file.enabled = true;
+              filtered_items = {
+                visible = true;
+                hide_dotfiles = false;
+                hide_gitignored = false;
+              };
+            };
+          };
+        };
+
+        plugins.bufferline = {
+          enable = true;
+          settings.options = {
+            mode = "buffers";
+            separator_style = "thin";
+            diagnostics = "nvim_lsp";
+            always_show_bufferline = true;
+            show_buffer_close_icons = false;
+            show_close_icon = false;
+            color_icons = true;
+            offsets = [
+              {
+                filetype = "neo-tree";
+                text = "EXPLORER";
+                highlight = "Directory";
+                separator = true;
+              }
+            ];
+          };
+        };
+
+        colorschemes.catppuccin = {
+          enable = false;
           settings = {
             flavour = "mocha";
             transparent_background = true;
@@ -157,6 +217,19 @@
                 }
               end
             '';
+          };
+        };
+
+        colorschemes.tokyonight = {
+          enable = true;
+          settings = {
+            style = "storm";
+            transparent = false;
+            terminal_colors = true;
+            styles = {
+              sidebars = "dark";
+              floats = "dark";
+            };
           };
         };
 
@@ -349,6 +422,8 @@
           };
           nil_ls.enable = true;
             ts_ls.enable = true;
+            bashls.enable = true;
+            pyright.enable = true;
 
             qmlls = {
               enable = true;
@@ -574,14 +649,6 @@
           -- craftzdog UI
           require("mini.icons").setup()
           require("mini.icons").mock_nvim_web_devicons()
-
-          require("craftzdog.utils.tabline").setup()
-          vim.o.showtabline = 1
-          vim.o.tabline = "%!v:lua.require('craftzdog.utils.tabline').render()"
-
-          require("tiny-cmdline").setup({
-            position = { y = "20%" },
-          })
 
           require("mini.diff").setup({
             view = { overlay_style = "hunk" },
@@ -1350,6 +1417,36 @@
             key = "<leader>dH";
             action = "<cmd>CodeDiff history<cr>";
             options.desc = "File history (repo)";
+          }
+          {
+            mode = "n";
+            key = "<leader>e";
+            action = "<cmd>Neotree toggle<CR>";
+            options.desc = "Explorer";
+          }
+          {
+            mode = "n";
+            key = "<S-l>";
+            action = "<cmd>BufferLineCycleNext<CR>";
+            options.desc = "Next buffer";
+          }
+          {
+            mode = "n";
+            key = "<S-h>";
+            action = "<cmd>BufferLineCyclePrev<CR>";
+            options.desc = "Prev buffer";
+          }
+          {
+            mode = "n";
+            key = "<leader>tt";
+            action.__raw = "function() Snacks.terminal() end";
+            options.desc = "Terminal";
+          }
+          {
+            mode = "n";
+            key = "<leader>z";
+            action.__raw = "function() Snacks.zen() end";
+            options.desc = "Zen mode";
           }
         ];
       };
