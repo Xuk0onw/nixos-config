@@ -125,3 +125,5 @@ false` in `programs.nix` (the mangowm NixOS module is still imported by desktop)
 
 the user always do the sudo nixos-rebuild switch --flake .#desktop Commands
 if you can skip the long build let the user do it
+
+test
