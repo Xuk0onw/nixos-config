@@ -33,6 +33,10 @@
       };
     };
 
+    # Noctalia rewrites these at runtime; force avoids a HM backup clobber on rebuild.
+    xdg.configFile."gtk-3.0/settings.ini".force = true;
+    xdg.configFile."gtk-4.0/settings.ini".force = true;
+
     home.sessionVariables = {
       GTK_THEME = "Orchis-Purple-Dark";
       TRACKER_DISABLE = "1";
