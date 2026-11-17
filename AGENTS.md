@@ -113,8 +113,8 @@ false` in `programs.nix` (the mangowm NixOS module is still imported by desktop)
   `mac-style`. Desktop-only `amdgpu.dcdebugmask` lives in `modules/nixos/desktop.nix`.
 - `modules/home/opencode.nix` is desktop-only: it installs
   `modules/home/config/opencode/opencode.jsonc` via `xdg.configFile.source` (store-backed,
-  needs a rebuild) and adds `uv` plus the numtide substituter. The opencode package comes
-  from `modules/home/desktop.nix` via `llm-agents`.
+  needs a rebuild) and adds `uv` plus the numtide substituter. The `opencode2` package comes
+  from `modules/home/desktop.nix` via `llm-agents`; the config uses the V2 `plugins` key.
 - nixvim is wired in two places: the NixOS module is imported only by thinkpad
   (`modules/nixos/thinkpad.nix`), while the HM module is shared to all users via
   `home-manager.sharedModules` (`modules/nixos/home-manager.nix`).
