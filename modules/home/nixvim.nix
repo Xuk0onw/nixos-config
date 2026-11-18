@@ -26,6 +26,7 @@
           mini-diff
           incline-nvim
           codediff-nvim
+          live-preview-nvim
         ];
 
         extraConfigLuaPre = ''
@@ -81,6 +82,8 @@
         extraPackages = with pkgs; [
           tree-sitter
           git
+          curl
+          jq
           ripgrep
           fd
           gcc
@@ -136,6 +139,32 @@
         plugins.web-devicons = {
           enable = true;
         };
+
+        plugins.emmet = {
+          enable = true;
+          # blink-cmp owns <C-y> (accept) and <C-e> (hide menu)
+          settings.leader_key = "<M-e>";
+        };
+
+        plugins.kulala = {
+          enable = true;
+          settings = {
+            default_view = "body";
+            default_env = "dev";
+          };
+        };
+
+        plugins.render-markdown.enable = true;
+
+        plugins.luasnip = {
+          enable = true;
+          fromVscode = [
+            { paths = "${pkgs.vimPlugins.friendly-snippets}"; }
+          ];
+        };
+
+        plugins.vim-dadbod.enable = true;
+        plugins.vim-dadbod-ui.enable = true;
 
         plugins.which-key = {
           enable = true;
@@ -520,7 +549,7 @@
         plugins.blink-cmp = {
           enable = true;
           settings = {
-            snippets.preset = "default";
+            snippets.preset = "luasnip";
             completion = {
               accept.auto_brackets.enabled = true;
               menu = {
@@ -640,6 +669,8 @@
         filetype.extension.mjml = "html";
 
         extraConfigLua = ''
+          require("livepreview.config").set({ picker = "snacks.picker" })
+
           local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
           for type, icon in pairs(signs) do
             local hl = "DiagnosticSign" .. type
@@ -1447,6 +1478,24 @@
             key = "<leader>z";
             action.__raw = "function() Snacks.zen() end";
             options.desc = "Zen mode";
+          }
+          {
+            mode = "n";
+            key = "<leader>hs";
+            action.__raw = "function() require('kulala').run() end";
+            options.desc = "HTTP Send Request";
+          }
+          {
+            mode = "n";
+            key = "<leader>db";
+            action = "<cmd>DBUI<CR>";
+            options.desc = "Database UI";
+          }
+          {
+            mode = "n";
+            key = "<leader>lp";
+            action = "<cmd>LivePreview pick<CR>";
+            options.desc = "Live Preview (pick file)";
           }
         ];
       };
