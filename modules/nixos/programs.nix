@@ -52,6 +52,7 @@
       sops
       gh
       nix-search-tv
+      wl-mirror
     ];
 
     programs.niri.enable = true;

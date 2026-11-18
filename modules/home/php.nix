@@ -24,14 +24,18 @@
 
   flake.modules.nixos.php = { pkgs, ... }: {
     services.mysql = {
-      enable = true;
+      enable = false;
       package = pkgs.mariadb;
     };
 
     services.httpd = {
-      enable = true;
+      enable = false;
       adminAddr = "admin@example.com";
-      enablePHP = true;
+      enablePHP = false;
+
+      virtualHosts.localhost.extraConfig = ''
+        Alias /adminer ${pkgs.adminer}/adminer.php
+      '';
     };
   };
 }
