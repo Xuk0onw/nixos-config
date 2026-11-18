@@ -2,7 +2,7 @@
 
 {
   flake.modules.homeManager.nixvim =
-    { pkgs, ... }:
+    { pkgs, config, ... }:
 
     {
       programs.nixvim = {
@@ -84,6 +84,7 @@
           git
           curl
           jq
+          sqlite
           ripgrep
           fd
           gcc
@@ -253,7 +254,7 @@
           enable = true;
           settings = {
             style = "storm";
-            transparent = false;
+            transparent = true;
             terminal_colors = true;
             styles = {
               sidebars = "dark";
@@ -387,7 +388,19 @@
 
         plugins.treesitter = {
           enable = true;
-          nixGrammars = false;
+          nixGrammars = true;
+          grammarPackages = with config.programs.nixvim.plugins.treesitter.package.builtGrammars; [
+            html
+            css
+            javascript
+            typescript
+            tsx
+            json
+            yaml
+            markdown
+            nix
+            lua
+          ];
           settings = {
             highlight.enable = true;
             indent.enable = true;
@@ -439,17 +452,19 @@
               settings = {
                 tailwindCSS.experimental.classRegex = [
                   "class\\s*=\\s*['\"]([^'\"]*)['\"]"
+                  "className\\s*=\\s*['\"]([^'\"]*)['\"]"
+                  "className\\s*=\\s*\\{`([^`]*)`\\}"
                 ];
               };
             };
             jsonls = {
               enable = true;
             };
-          nixd = {
-            enable = true;
-            settings.formatting.command = [ "nixpkgs-fmt" ];
-          };
-          nil_ls.enable = true;
+            nixd = {
+              enable = true;
+              settings.formatting.command = [ "nixpkgs-fmt" ];
+            };
+            nil_ls.enable = true;
             ts_ls.enable = true;
             bashls.enable = true;
             pyright.enable = true;
@@ -471,7 +486,7 @@
               settings.Lua = {
                 workspace = {
                   checkThirdParty = false;
-                  library = [ { __raw = "vim.env.VIMRUNTIME"; } ];
+                  library = [{ __raw = "vim.env.VIMRUNTIME"; }];
                 };
                 hint = {
                   enable = true;
@@ -534,10 +549,10 @@
             lazygit = {
               enabled = true;
               configure = true;
-            config.os = {
-              edit.__raw = "require('craftzdog.utils.lazygit').edit_command()";
-              editAtLine.__raw = "require('craftzdog.utils.lazygit').edit_command({ at_line = true })";
-            };
+              config.os = {
+                edit.__raw = "require('craftzdog.utils.lazygit').edit_command()";
+                editAtLine.__raw = "require('craftzdog.utils.lazygit').edit_command({ at_line = true })";
+              };
               theme.activeBorderColor = {
                 fg = "WarningMsg";
                 bold = true;
@@ -641,7 +656,22 @@
             enable_hsl_without_function = true;
             enable_ansi = true;
             enable_var_usage = true;
-            enable_tailwind = false;
+            enable_tailwind = true;
+          };
+        };
+
+        plugins.lint = {
+          enable = true;
+          autoInstall.enable = true;
+          lintersByFt = {
+            html = [ "htmlhint" ];
+            css = [ "stylelint" ];
+            scss = [ "stylelint" ];
+            less = [ "stylelint" ];
+            javascript = [ "eslint" ];
+            javascriptreact = [ "eslint" ];
+            typescript = [ "eslint" ];
+            typescriptreact = [ "eslint" ];
           };
         };
 
