@@ -21,4 +21,17 @@
         (pkgs.laravel.override { php = phpDev; })
       ];
     };
+
+  flake.modules.nixos.php = { pkgs, ... }: {
+    services.mysql = {
+      enable = true;
+      package = pkgs.mariadb;
+    };
+
+    services.httpd = {
+      enable = true;
+      adminAddr = "admin@example.com";
+      enablePHP = true;
+    };
+  };
 }

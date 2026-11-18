@@ -442,7 +442,7 @@
               package = pkgs.intelephense;
               settings = {
                 files.maxSize = 5000000;
-                environment.phpVersion = "8.2";
+                environment.phpVersion = "8.4";
               };
             };
             html.enable = true;

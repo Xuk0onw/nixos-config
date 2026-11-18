@@ -8,6 +8,7 @@
       tmux
       btop
       nixvim
+      php
       bash
       cava
       fastfetch
