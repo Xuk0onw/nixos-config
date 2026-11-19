@@ -647,6 +647,12 @@
 
         plugins.flash.enable = true;
         plugins.mini-surround.enable = true;
+        plugins.mini-ai.enable = true;
+        plugins.mini-comment.enable = true;
+        plugins.illuminate.enable = true;
+        plugins.lsp-signature.enable = true;
+        plugins.yanky.enable = true;
+        plugins.diffview.enable = true;
         plugins.undotree.enable = true;
         plugins.spectre.enable = true;
 
@@ -1553,6 +1559,54 @@
             key = "<leader>sr";
             action.__raw = "function() require('spectre').open() end";
             options.desc = "Search & Replace (project)";
+          }
+          {
+            mode = "n";
+            key = "<leader>yh";
+            action = "<cmd>YankyRingHistory<CR>";
+            options.desc = "Yank history";
+          }
+          {
+            mode = "n";
+            key = "<leader>gv";
+            action = "<cmd>DiffviewOpen<CR>";
+            options.desc = "Diff view";
+          }
+          {
+            mode = "n";
+            key = "<leader>gq";
+            action = "<cmd>DiffviewClose<CR>";
+            options.desc = "Close diff view";
+          }
+          {
+            mode = [
+              "n"
+              "x"
+            ];
+            key = "p";
+            action = "<Plug>(YankyPutAfter)";
+            options.desc = "Put after (yank ring)";
+          }
+          {
+            mode = [
+              "n"
+              "x"
+            ];
+            key = "P";
+            action = "<Plug>(YankyPutBefore)";
+            options.desc = "Put before (yank ring)";
+          }
+          {
+            mode = "n";
+            key = "<C-n>";
+            action = "<Plug>(YankyNextEntry)";
+            options.desc = "Next yank";
+          }
+          {
+            mode = "n";
+            key = "<C-p>";
+            action = "<Plug>(YankyPreviousEntry)";
+            options.desc = "Previous yank";
           }
         ];
       };
