@@ -645,6 +645,21 @@
         plugins.gitlinker.enable = true;
         plugins.trouble.enable = true;
 
+        plugins.flash.enable = true;
+        plugins.mini-surround.enable = true;
+        plugins.undotree.enable = true;
+        plugins.spectre.enable = true;
+
+        plugins.treesitter-context = {
+          enable = true;
+          settings.max_lines = 3;
+        };
+
+        plugins.inc-rename = {
+          enable = true;
+          settings.input_buffer_type = "snacks";
+        };
+
         plugins.highlight-colors = {
           enable = true;
           settings = {
@@ -1269,8 +1284,8 @@
           {
             mode = "n";
             key = "<leader>cr";
-            action.__raw = "vim.lsp.buf.rename";
-            options.desc = "Rename";
+            action = "<cmd>IncRename <cword><CR>";
+            options.desc = "Rename (live preview)";
           }
           {
             mode = [
@@ -1526,6 +1541,18 @@
             key = "<leader>lp";
             action = "<cmd>LivePreview pick<CR>";
             options.desc = "Live Preview (pick file)";
+          }
+          {
+            mode = "n";
+            key = "<leader>u";
+            action = "<cmd>UndotreeToggle<CR>";
+            options.desc = "Undo tree";
+          }
+          {
+            mode = "n";
+            key = "<leader>sr";
+            action.__raw = "function() require('spectre').open() end";
+            options.desc = "Search & Replace (project)";
           }
         ];
       };
