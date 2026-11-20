@@ -653,6 +653,14 @@
         plugins.lsp-signature.enable = true;
         plugins.yanky.enable = true;
         plugins.diffview.enable = true;
+
+        plugins.codecompanion = {
+          enable = true;
+          settings = {
+            adapters.http.extend.ollama.schema.model.default = "fredrezones55/Gemma-4-Uncensored-HauhauCS-Aggressive:e4b";
+            strategies.chat.adapter = "ollama";
+          };
+        };
         plugins.undotree.enable = true;
         plugins.spectre.enable = true;
 
@@ -1577,6 +1585,12 @@
             key = "<leader>gq";
             action = "<cmd>DiffviewClose<CR>";
             options.desc = "Close diff view";
+          }
+          {
+            mode = "n";
+            key = "<leader>gc";
+            action = "<cmd>CodeCompanion /commit<CR>";
+            options.desc = "Generate commit message (ollama)";
           }
           {
             mode = [
