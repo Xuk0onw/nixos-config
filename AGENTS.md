@@ -34,6 +34,9 @@ dendritic pattern: `flake.nix` is a thin entrypoint, `import-tree` auto-imports 
   module lists its name (e.g. `foo` in `modules/nixos/common.nix` or `desktop.nix`).
 - Filename and aspect name may differ (`olama.nix` exports `ollama`); aggregators use the
   aspect name.
+- A file can export both aspect types, and its directory does not decide the target:
+  `modules/home/php.nix` defines `homeManager.php` (commented out in `base.nix`) and
+  `nixos.php` (imported by `common.nix`).
 - Outer wrappers use `{ inputs, config, ... }` when they need flake inputs or other
   aspects. There are no `specialArgs`; `inputs` is captured lexically.
 
@@ -83,14 +86,16 @@ dendritic pattern: `flake.nix` is a thin entrypoint, `import-tree` auto-imports 
 ## Wayland stacks
 
 - Active: **Niri + Noctalia** and **Umbriel**, both enabled in shared `programs.nix` for
-  both hosts; the external Umbriel NixOS module is imported only by desktop, and the HM
-  modules live in shared `base`. Niri config variants are per-device:
-  `modules/home/niri.nix` exposes `niri-desktop` / `niri-thinkpad`, writing
-  `~/.config/niri/config.kdl`; `modules/home/config/niri.kdl` spawns `noctalia` and
-  `skwd-walld`.
-- **Umbriel**: the NixOS module provides `umbriel.service` and the login session; the HM
-  module installs the package/config. `programs.umbriel.settings` is left unset so
-  Umbriel writes `~/.config/umbriel/` on first login; setting it in HM blocks that.
+  both hosts; the Umbriel HM module lives in shared `base` and installs the
+  package/config. Niri config variants are per-device: `modules/home/niri.nix` exposes
+  `niri-desktop` / `niri-thinkpad`, writing `~/.config/niri/config.kdl`;
+  `modules/home/config/niri.kdl` spawns `noctalia` and `skwd-walld`.
+- **Umbriel**: `programs.umbriel` is in nixpkgs, so thinkpad uses the nixpkgs module.
+  Desktop also imports `inputs.umbriel.nixosModules.default`, which `disabledModules` the
+  nixpkgs one and supplies the flake's package/portal — so the two hosts run different
+  Umbriel implementations. Both provide `umbriel.service` and the login session.
+  `programs.umbriel.settings` is left unset so Umbriel writes `~/.config/umbriel/` on first
+  login; setting it in HM blocks that.
 - **Mango + DankMaterialShell are disabled but still wired**: `programs.mango.enable =
 false` in `programs.nix` (the mangowm NixOS module is still imported by desktop), and
   `modules/home/dms.nix` gates DMS on mango being enabled. Re-enable by flipping that
