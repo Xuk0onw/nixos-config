@@ -30,6 +30,7 @@
       qalculate-gtk
       vscodium
       tuios
+      librewolf
     ];
 
     home.sessionVariables = {

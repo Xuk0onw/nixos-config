@@ -1,31 +1,31 @@
 { ... }:
 
 {
-  flake.modules.homeManager.home-programs = { ... }:
+  flake.modules.homeManager.home-programs =
+    { ... }:
 
+    {
+      programs = {
+        bash.enable = true;
+        zen-browser.enable = false;
 
-  {
-    programs = {
-      bash.enable = true;
-      zen-browser.enable = true;
+        fzf.enable = true;
 
-      fzf.enable = true;
+        zoxide = {
+          enable = true;
+          enableFishIntegration = true;
+          enableBashIntegration = true;
+        };
 
-      zoxide = {
-        enable = true;
-        enableFishIntegration = true;
-        enableBashIntegration = true;
-      };
+        bat.enable = true;
 
-      bat.enable = true;
-
-      eza = {
-        enable = true;
-        enableFishIntegration = true;
-        enableBashIntegration = true;
-        icons = "auto";
-        git = true;
+        eza = {
+          enable = true;
+          enableFishIntegration = true;
+          enableBashIntegration = true;
+          icons = "auto";
+          git = true;
+        };
       };
     };
-  };
 }
