@@ -1,7 +1,7 @@
 { lib, ... }:
 
 {
-  flake.modules.nixos.services = {
+  flake.modules.nixos.services = { pkgs, ... }: {
     hardware.bluetooth.enable = true;
     hardware.bluetooth.powerOnBoot = true;
 
@@ -12,6 +12,13 @@
     services.gvfs.enable = true;
     services.udisks2.enable = true;
     services.flatpak.enable = true;
+    systemd.services.flatpak-flathub = {
+      wantedBy = [ "multi-user.target" ];
+      path = [ pkgs.flatpak ];
+      script = ''
+        flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+      '';
+    };
     services.power-profiles-daemon.enable = false;
     services.fstrim.enable = true;
     services.acpid.enable = true;
