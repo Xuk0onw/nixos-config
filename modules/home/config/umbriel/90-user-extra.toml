@@ -1,0 +1,80 @@
+# 90 — Yours. iNiR creates this file once and never touches it again. What you change in Settings goes to
+# 95-settings.toml, which loads after this one: a key set in both follows Settings.
+#
+# Every key Umbriel knows: umbriel config schema --json. Check a change: umbriel config validate.
+
+# The keys from Niri's ~/.config/niri/config.kdl. Kept here instead of config.d/60-from-niri.toml because
+# `inir compositor sync` writes that file with case/modifier spellings that collide and invalidate the config.
+[keybinds]
+"Mod+T" = "spawn kitty"
+"Ctrl+Space" = "spawn qs ipc call launcher open"
+"Mod+E" = "spawn nemo"
+"Super+Alt+L" = "spawn swaylock"
+"XF86AudioRaiseVolume" = { action = "spawn wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+", allow_when_locked = true }
+"XF86AudioLowerVolume" = { action = "spawn wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-", allow_when_locked = true }
+"XF86AudioMute" = { action = "spawn wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle", allow_when_locked = true }
+"XF86AudioMicMute" = { action = "spawn wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle", allow_when_locked = true }
+"XF86MonBrightnessUp" = { action = "spawn brightnessctl --class=backlight set +10%", allow_when_locked = true }
+"XF86MonBrightnessDown" = { action = "spawn brightnessctl --class=backlight set 10%-", allow_when_locked = true }
+"Mod+Shift+A" = { action = "overview-toggle", repeat = false }
+"Mod+Ctrl+Left" = "column-move-left"
+"Mod+Ctrl+Down" = "window-move-down"
+"Mod+Ctrl+Up" = "window-move-up"
+"Mod+Ctrl+Right" = "column-move-right"
+"Mod+Ctrl+H" = "column-move-left"
+"Mod+Ctrl+J" = "window-move-down"
+"Mod+Ctrl+K" = "window-move-up"
+"Mod+Ctrl+L" = "column-move-right"
+"Mod+Shift+Left" = "output-focus-left"
+"Mod+Shift+Down" = "output-focus-down"
+"Mod+Shift+Up" = "output-focus-up"
+"Mod+Shift+Right" = "output-focus-right"
+"Mod+Shift+H" = "output-focus-left"
+"Mod+Shift+J" = "output-focus-down"
+"Mod+Shift+K" = "output-focus-up"
+"Mod+Shift+L" = "output-focus-right"
+"Mod+Ctrl+Shift+Left" = "column-move-to-output-left"
+"Mod+Ctrl+Shift+Down" = "column-move-to-output-down"
+"Mod+Ctrl+Shift+Up" = "column-move-to-output-up"
+"Mod+Ctrl+Shift+Right" = "column-move-to-output-right"
+"Mod+Shift+Ctrl+H" = "column-move-to-output-left"
+"Mod+Shift+Ctrl+J" = "column-move-to-output-down"
+"Mod+Shift+Ctrl+K" = "column-move-to-output-up"
+"Mod+Ctrl+Shift+L" = "column-move-to-output-right"
+"Mod+U" = "workspace-next"
+"Mod+I" = "workspace-previous"
+"Mod+Ctrl+U" = "column-move-to-workspace-next"
+"Mod+Ctrl+I" = "column-move-to-workspace-previous"
+"Mod+Ctrl+WheelRight" = { action = "column-move-right", cooldown_ms = 150 }
+"Mod+Ctrl+WheelLeft" = { action = "column-move-left", cooldown_ms = 150 }
+"Mod+Shift+WheelDown" = { action = "window-focus-right", cooldown_ms = 150 }
+"Mod+Shift+WheelUp" = { action = "window-focus-left", cooldown_ms = 150 }
+"Mod+Ctrl+Shift+WheelDown" = { action = "column-move-right", cooldown_ms = 150 }
+"Mod+Ctrl+Shift+WheelUp" = { action = "column-move-left", cooldown_ms = 150 }
+"Mod+Shift+4" = "column-move-to-workspace 4"
+"Mod+Shift+5" = "column-move-to-workspace 5"
+"Mod+Shift+6" = "column-move-to-workspace 6"
+"Mod+Shift+7" = "column-move-to-workspace 7"
+"Mod+Shift+8" = "column-move-to-workspace 8"
+"Mod+Shift+9" = "column-move-to-workspace 9"
+"Mod+F" = "window-toggle-maximize"
+"Mod+Shift+F" = "window-toggle-fullscreen"
+"Mod+V" = "window-toggle-floating"
+"Mod+W" = "spawn zen-beta"
+"Mod+Shift+W" = "spawn helium"
+"Mod+S" = "spawn steam"
+"Mod+A" = "spawn skwd-wall-v2"
+"Mod+D" = "spawn sh -c 'pkill -x rofi || ~/.config/rofi/launchers/type-6/launcher.sh'"
+"Ctrl+Shift+Escape" = "spawn kitty -e btop"
+"Mod+Shift+S" = "spawn inir region screenshot"
+"Ctrl+Alt+Delete" = "session-quit"
+"Mod+Shift+P" = "dpms-off"
+"Mod+Shift+Slash" = "cheatsheet-toggle"
+"Mod+Shift+R" = "window-cycle-secondary-extent"
+"Mod+Shift+Page_Down" = "workspace-move-down"
+"Mod+Shift+Page_Up" = "workspace-move-up"
+"Mod+Shift+U" = "workspace-move-down"
+"Mod+Shift+I" = "workspace-move-up"
+
+[output.eDP-1]
+scale = 1.25
