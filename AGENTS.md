@@ -12,14 +12,15 @@ dendritic pattern: `flake.nix` is a thin entrypoint, `import-tree` auto-imports 
 
 ## Commands
 
-- Rebuild/activate: `sudo nixos-rebuild switch --flake /etc/nixos#desktop` (or `#thinkpad`)
+- Rebuild/activate: `sudo nixos-rebuild switch --flake /etc/nixos#desktop` (or `#thinkpad`).
+  The user runs this themselves (fish alias `nrs` = `...#desktop`; thinkpad's = `...#thinkpad`).
 - Validate without activating: `sudo nixos-rebuild build --flake /etc/nixos#desktop`
 - Full config eval (catches module errors without building):
   `nix eval --raw /etc/nixos#nixosConfigurations.desktop.config.system.build.toplevel.drvPath`
 - Fast eval: `nix eval --raw /etc/nixos#nixosConfigurations.desktop.config.networking.hostName`.
   `--raw` only works for strings; use `--json` for booleans.
 - Update inputs: `nix flake update`; one input: `nix flake update <name>`
-- Agent `sudo` is blocked by permission rules; hand `switch`/activation to the user.
+- Agent `sudo` is blocked by permission rules. Don't start the long rebuild — hand `switch`/activation to the user.
 - No CI, tests, lint, or formatter config. `nixfmt` and the `home-manager` CLI are NOT
   installed; use `nix run nixpkgs#nixfmt-rfc-style -- <file>` if formatting is needed.
   Home-manager is only used as a NixOS module, so all changes go through `nixos-rebuild`.
@@ -94,8 +95,10 @@ dendritic pattern: `flake.nix` is a thin entrypoint, `import-tree` auto-imports 
   Desktop also imports `inputs.umbriel.nixosModules.default`, which `disabledModules` the
   nixpkgs one and supplies the flake's package/portal — so the two hosts run different
   Umbriel implementations. Both provide `umbriel.service` and the login session.
-  `programs.umbriel.settings` is left unset so Umbriel writes `~/.config/umbriel/` on first
-  login; setting it in HM blocks that.
+  The HM module (`modules/home/umbriel.nix`) DOES set `programs.umbriel.settings` from
+  `./config/umbriel/config.toml` and adds a drop-in via
+  `xdg.configFile."umbriel/config.d/90-user-extra.toml"`; the numbered `10-80` files and
+  `noctalia.toml` stay runtime-managed. Edits here are store-backed and need a rebuild.
 - **Mango + DankMaterialShell are disabled but still wired**: `programs.mango.enable =
 false` in `programs.nix` (the mangowm NixOS module is still imported by desktop), and
   `modules/home/dms.nix` gates DMS on mango being enabled. Re-enable by flipping that
@@ -126,7 +129,68 @@ false` in `programs.nix` (the mangowm NixOS module is still imported by desktop)
 - `.git/objects/e6.root` is a root-owned leftover; git ignores it. If `git add` fails on
   a root-owned `.git/objects/*` dir, the user must chown it.
 
-## user Noted
+## Coding guidelines (Karpathy)
 
-the user always do the sudo nixos-rebuild switch --flake .#desktop Commands
-if you can skip the long build let the user do it
+Behavioral guidelines to reduce common LLM coding mistakes. Merge with project-specific instructions as needed.
+
+**Tradeoff:** These guidelines bias toward caution over speed. For trivial tasks, use judgment.
+
+### 1. Think Before Coding
+
+**Don't assume. Don't hide confusion. Surface tradeoffs.**
+
+Before implementing:
+- State your assumptions explicitly. If uncertain, ask.
+- If multiple interpretations exist, present them - don't pick silently.
+- If a simpler approach exists, say so. Push back when warranted.
+- If something is unclear, stop. Name what's confusing. Ask.
+
+### 2. Simplicity First
+
+**Minimum code that solves the problem. Nothing speculative.**
+
+- No features beyond what was asked.
+- No abstractions for single-use code.
+- No "flexibility" or "configurability" that wasn't requested.
+- No error handling for impossible scenarios.
+- If you write 200 lines and it could be 50, rewrite it.
+
+Ask yourself: "Would a senior engineer say this is overcomplicated?" If yes, simplify.
+
+### 3. Surgical Changes
+
+**Touch only what you must. Clean up only your own mess.**
+
+When editing existing code:
+- Don't "improve" adjacent code, comments, or formatting.
+- Don't refactor things that aren't broken.
+- Match existing style, even if you'd do it differently.
+- If you notice unrelated dead code, mention it - don't delete it.
+
+When your changes create orphans:
+- Remove imports/variables/functions that YOUR changes made unused.
+- Don't remove pre-existing dead code unless asked.
+
+The test: Every changed line should trace directly to the user's request.
+
+### 4. Goal-Driven Execution
+
+**Define success criteria. Loop until verified.**
+
+Transform tasks into verifiable goals:
+- "Add validation" → "Write tests for invalid inputs, then make them pass"
+- "Fix the bug" → "Write a test that reproduces it, then make it pass"
+- "Refactor X" → "Ensure tests pass before and after"
+
+For multi-step tasks, state a brief plan:
+```
+1. [Step] → verify: [check]
+2. [Step] → verify: [check]
+3. [Step] → verify: [check]
+```
+
+Strong success criteria let you loop independently. Weak criteria ("make it work") require constant clarification.
+
+---
+
+**These guidelines are working if:** fewer unnecessary changes in diffs, fewer rewrites due to overcomplication, and clarifying questions come before implementation rather than after mistakes.

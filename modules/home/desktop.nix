@@ -13,7 +13,6 @@
 
     home.packages = [
       inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.opencode2
-      inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-code
       inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.openclaw
       inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default
       inputs.skwd-wall.packages.${pkgs.stdenv.hostPlatform.system}.plasma
