@@ -316,6 +316,22 @@
         "type": "github"
       }
     },
+    "impeccable": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1795039099,
+        "narHash": "sha256-vtmRhNPnX974JYvn5BKXeJ1JpBusS/0O57zTPVxbJPg=",
+        "owner": "pbakaus",
+        "repo": "impeccable",
+        "rev": "b49177d32788f2dc585c42831d845dacf1ebed2c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pbakaus",
+        "repo": "impeccable",
+        "type": "github"
+      }
+    },
     "import-tree": {
       "locked": {
         "lastModified": 1788467110,
@@ -688,6 +704,7 @@
         "flake-parts": "flake-parts",
         "helium": "helium",
         "home-manager": "home-manager",
+        "impeccable": "impeccable",
         "import-tree": "import-tree",
         "inir": "inir",
         "llm-agents": "llm-agents",

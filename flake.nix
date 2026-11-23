@@ -8,6 +8,14 @@
     noctalia.url = "github:noctalia-dev/noctalia/cachix";
     skwd-wall.url = "github:liixini/skwd-wall";
     llm-agents.url = "github:numtide/llm-agents.nix";
+    impeccable = {
+      url = "github:pbakaus/impeccable";
+      flake = false;
+    };
+    mattpocock-skills = {
+      url = "github:mattpocock/skills";
+      flake = false;
+    };
     umbriel.url = "github:noctalia-dev/umbriel";
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
