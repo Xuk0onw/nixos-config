@@ -13,7 +13,7 @@
       flake = false;
     };
     mattpocock-skills = {
-      url = "github:mattpocock/skills";
+      url = "git+https://github.com/mattpocock/skills.git?rev=abeeaf95660ba9e8b7c753eb38f441ca707a8823";
       flake = false;
     };
     umbriel.url = "github:noctalia-dev/umbriel";

@@ -432,6 +432,23 @@
         "type": "github"
       }
     },
+    "mattpocock-skills": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1795095298,
+        "narHash": "sha256-fc5+qmchp1IQ/rQP1olWKC1eC4VdYhaB7YYzC3+JBe0=",
+        "ref": "refs/heads/main",
+        "rev": "abeeaf95660ba9e8b7c753eb38f441ca707a8823",
+        "revCount": 559,
+        "type": "git",
+        "url": "https://github.com/mattpocock/skills.git"
+      },
+      "original": {
+        "rev": "abeeaf95660ba9e8b7c753eb38f441ca707a8823",
+        "type": "git",
+        "url": "https://github.com/mattpocock/skills.git"
+      }
+    },
     "nix-cachyos-kernel": {
       "inputs": {
         "flake-compat": "flake-compat_2",
@@ -710,6 +727,7 @@
         "llm-agents": "llm-agents",
         "mac-style-plymouth": "mac-style-plymouth",
         "mangowm": "mangowm",
+        "mattpocock-skills": "mattpocock-skills",
         "nix-cachyos-kernel": "nix-cachyos-kernel",
         "nixpkgs": "nixpkgs_3",
         "nixvim": "nixvim",

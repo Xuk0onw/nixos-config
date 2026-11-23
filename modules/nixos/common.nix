@@ -15,7 +15,6 @@
       optimisation
       audio
       lab
-      php
       git
       settings
       home-manager
