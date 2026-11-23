@@ -26,6 +26,12 @@
       qt6.qtsvg
       vlc
       zed-editor
+      (writeShellScriptBin "playwright" ''
+        export PLAYWRIGHT_BROWSERS_PATH=${playwright-driver.browsers}
+        export PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
+        export PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS=1
+        exec ${playwright-test}/bin/playwright "$@"
+      '')
       libreoffice-stable
       qalculate-gtk
       vscodium
@@ -39,6 +45,10 @@
       FREETYPE_PROPERTIES = "cff:no-stem-darkening=0 autofitter:no-stem-darkening=0";
       GTK_THEME = "Orchis-Purple-Dark";
       ICON_THEME = "Tela-circle-dark";
+      # Use nixpkgs' patched browsers instead of downloading Playwright's own.
+      PLAYWRIGHT_BROWSERS_PATH = "${pkgs.playwright-driver.browsers}";
+      PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1";
+      PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS = "1";
     };
 
     xdg.configFile."fontconfig/fonts.conf".text = ''

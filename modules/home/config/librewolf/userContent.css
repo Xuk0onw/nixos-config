@@ -1,0 +1,19 @@
+@-moz-document url-prefix("about:") {
+  :root {
+    --background-color-canvas: #0d0401 !important;
+    --background-color-box: #18120f !important;
+    --background-color-information: #2f2825 !important;
+    --text-color: #F7F4F3 !important;
+    --border-color: #534c48 !important;
+    --color-accent-primary: #d7916a !important;
+    --color-accent-primary-hover: #e6a37c !important;
+    --link-color: #d7916a !important;
+  }
+
+  * { border-radius: 0px !important; }
+
+  button:hover, .button:hover {
+    background-color: #d7916a !important;
+    color: #18120f !important;
+  }
+}
