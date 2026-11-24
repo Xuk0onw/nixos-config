@@ -9,7 +9,6 @@
       rofi
       opencode
       inir
-      librewolf
     ];
 
     home.packages = [
