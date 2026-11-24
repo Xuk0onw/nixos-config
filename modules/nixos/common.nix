@@ -8,6 +8,7 @@
       programs
       services
       users
+      docker
       wallpaperengine
       bluetooth
       font

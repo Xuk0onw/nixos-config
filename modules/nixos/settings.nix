@@ -54,11 +54,6 @@
       });
     '';
 
-    virtualisation.docker = {
-      enable = true;
-      enableOnBoot = false;
-    };
-
     hardware.graphics = {
       enable = true;
       enable32Bit = true;

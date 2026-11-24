@@ -6,7 +6,7 @@
       isNormalUser = true;
       description = "aditya";
       shell = pkgs.fish;
-      extraGroups = [ "wheel" "libvirtd" "docker" "networkmanager" ];
+      extraGroups = [ "wheel" "libvirtd" "networkmanager" ];
       packages = with pkgs; [
         tree
         obsidian

@@ -6,6 +6,7 @@
       common
       hardware-desktop
       nvidia
+      docker-nvidia
       games
       tablet
       cachykernel
