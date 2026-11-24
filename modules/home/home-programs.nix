@@ -7,7 +7,7 @@
     {
       programs = {
         bash.enable = true;
-        zen-browser.enable = false;
+        zen-browser.enable = true;
 
         fzf.enable = true;
 
