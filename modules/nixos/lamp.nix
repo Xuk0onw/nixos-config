@@ -1,7 +1,7 @@
-{ config, ... }:
+{ ... }:
 
 {
-  flake.modules.nixos.lamp = { pkgs, ... }: {
+  flake.modules.nixos.lamp = { config, pkgs, ... }: {
     # Apache + PHP-FPM
     services.httpd = {
       enable = true;

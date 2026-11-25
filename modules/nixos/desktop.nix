@@ -14,6 +14,7 @@
       umbriel
       obs
       ollama
+      lamp
     ]) ++ [
       inputs.umbriel.nixosModules.default
       inputs.mangowm.nixosModules.mango
