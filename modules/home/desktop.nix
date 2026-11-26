@@ -26,6 +26,9 @@
       pkgs.winboat
     ];
 
-    programs.fish.shellAliases.nrs = "sudo nixos-rebuild switch --flake .#desktop";
+    programs.fish.shellAliases = {
+      nrs = "sudo nixos-rebuild switch --flake .#desktop";
+      opencode = "opencode2";
+    };
   };
 }
