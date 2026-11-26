@@ -386,6 +386,10 @@
           };
         };
 
+        plugins.yazi = {
+          enable = true;
+        };
+
         plugins.treesitter = {
           enable = true;
           nixGrammars = true;
@@ -1513,6 +1517,12 @@
             key = "<leader>e";
             action = "<cmd>Neotree toggle<CR>";
             options.desc = "Explorer";
+          }
+          {
+            mode = "n";
+            key = "<leader>E";
+            action = "<cmd>Yazi cwd<CR>";
+            options.desc = "Yazi (cwd)";
           }
           {
             mode = "n";
