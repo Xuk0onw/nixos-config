@@ -9,6 +9,7 @@
       rofi
       opencode
       inir
+      yazi-desktop
     ];
 
     home.packages = [

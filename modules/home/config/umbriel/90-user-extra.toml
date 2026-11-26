@@ -8,7 +8,7 @@
 [keybinds]
 "Mod+T" = "spawn kitty"
 "Ctrl+Space" = "spawn qs ipc call launcher open"
-"Mod+E" = "spawn nemo"
+"Mod+E" = "spawn kitty -e yazi"
 "Super+Alt+L" = "spawn swaylock"
 "XF86AudioRaiseVolume" = { action = "spawn wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+", allow_when_locked = true }
 "XF86AudioLowerVolume" = { action = "spawn wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-", allow_when_locked = true }

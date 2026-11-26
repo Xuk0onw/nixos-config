@@ -21,7 +21,6 @@
       inter
       snapshot
       gtk3
-      nemo
       gimp
       qt6.qtsvg
       vlc
