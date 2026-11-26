@@ -11,6 +11,7 @@
       bash
       cava
       fastfetch
+      yazi
       home-programs
       home-services
       gtk-qt

@@ -33,7 +33,8 @@
       };
     };
 
-    # Noctalia rewrites these at runtime; force avoids a HM backup clobber on rebuild.
+    # Apps rewrite GTK settings at runtime; force avoids a HM backup clobber on rebuild.
+    gtk.gtk2.force = true;
     xdg.configFile."gtk-3.0/settings.ini".force = true;
     xdg.configFile."gtk-4.0/settings.ini".force = true;
 

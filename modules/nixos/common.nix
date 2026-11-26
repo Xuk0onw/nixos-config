@@ -15,7 +15,7 @@
       network
       optimisation
       audio
-      lab
+      #lab
       git
       settings
       home-manager

@@ -27,7 +27,6 @@
       unzip
       unrar
       p7zip
-      yazi
       typst
       texliveFull
       ddgr
