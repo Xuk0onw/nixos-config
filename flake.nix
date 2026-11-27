@@ -8,14 +8,6 @@
     noctalia.url = "github:noctalia-dev/noctalia/cachix";
     skwd-wall.url = "github:liixini/skwd-wall";
     llm-agents.url = "github:numtide/llm-agents.nix";
-    impeccable = {
-      url = "github:pbakaus/impeccable";
-      flake = false;
-    };
-    mattpocock-skills = {
-      url = "git+https://github.com/mattpocock/skills.git?rev=abeeaf95660ba9e8b7c753eb38f441ca707a8823";
-      flake = false;
-    };
     umbriel.url = "github:noctalia-dev/umbriel";
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
@@ -53,6 +45,14 @@
     inir = {
       url = "github:snowarch/iNiR";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    impeccable = {
+      url = "github:pbakaus/impeccable";
+        flake = false;
+    };
+    mattpocock-skills = {
+      url = "git+https://github.com/mattpocock/skills.git?rev=abeeaf95660ba9e8b7c753eb38f441ca707a8823";
+        flake = false;
     };
   };
 
