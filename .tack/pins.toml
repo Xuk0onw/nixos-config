@@ -1,0 +1,116 @@
+# tack pins
+# edit by hand or with tack add / rm / alias
+# nix reads pins.lock.json
+# this file drives tack update
+
+# shorturl schemes
+# scheme rest expands rest into {path}
+[shorturls]
+# gh = "github:{path}"
+
+# all_follow maps input names to the top-level pin they follow
+# opt out per-input with exclude_follow
+[all_follow]
+# nixpkgs = "nixpkgs"
+# nixpkgs = ["nixpkgs-stable", "nixpkgs-unstable"]
+
+# inputs.<name> fields
+#   url             required, shorturl ok, ?rev=<sha> pins an exact commit
+#   type            flake (default), fetch, or fixed
+#   flake           legacy false means type = "fetch"
+#   follows         { child = "pin" } override map
+#   exclude_follow  all_follow names to skip
+#   dir             subdir holding flake.nix
+#   submodules      fetch git submodules
+#   unpack          fixed-only tarball or file
+[inputs]
+
+[inputs.dms]
+url = "github:duxlabs-dev/dux-shell/stable"
+
+[inputs.dms.follows]
+nixpkgs = "nixpkgs"
+
+[inputs.flake-parts]
+url = "github:hercules-ci/flake-parts"
+
+[inputs.helium]
+url = "github:schembriaiden/helium-browser-nix-flake"
+
+[inputs.helium.follows]
+nixpkgs = "nixpkgs"
+
+[inputs.home-manager]
+url = "github:nix-community/home-manager"
+
+[inputs.home-manager.follows]
+nixpkgs = "nixpkgs"
+
+[inputs.impeccable]
+url = "github:pbakaus/impeccable"
+type = "fetch"
+
+[inputs.import-tree]
+url = "github:vic/import-tree"
+
+[inputs.inir]
+url = "github:snowarch/iNiR"
+
+[inputs.inir.follows]
+nixpkgs = "nixpkgs"
+
+[inputs.llm-agents]
+url = "github:numtide/llm-agents.nix"
+
+[inputs.mac-style-plymouth]
+url = "github:SergioRibera/s4rchiso-plymouth-theme"
+
+[inputs.mac-style-plymouth.follows]
+nixpkgs = "nixpkgs"
+
+[inputs.mangowm]
+url = "github:mangowm/mango"
+
+[inputs.mangowm.follows]
+nixpkgs = "nixpkgs"
+
+[inputs.mattpocock-skills]
+url = "git+https://github.com/mattpocock/skills.git?rev=abeeaf95660ba9e8b7c753eb38f441ca707a8823"
+type = "fetch"
+
+[inputs.nix-cachyos-kernel]
+url = "github:xddxdd/nix-cachyos-kernel/release"
+
+[inputs.nixpkgs]
+url = "github:nixos/nixpkgs/nixos-unstable"
+
+[inputs.nixvim]
+url = "github:nix-community/nixvim"
+
+[inputs.noctalia]
+url = "github:noctalia-dev/noctalia/cachix"
+
+[inputs.qylock]
+url = "github:Darkkal44/qylock"
+
+[inputs.skwd-wall]
+url = "github:liixini/skwd-wall"
+
+[inputs.skwd-wall.follows]
+release = "release"
+
+[inputs.release]
+url = "github:liixini/skwd-wall/nix"
+
+[inputs.release.follows]
+nixpkgs = "nixpkgs"
+
+[inputs.umbriel]
+url = "github:noctalia-dev/umbriel"
+
+[inputs.zen-browser]
+url = "github:0xc000022070/zen-browser-flake"
+
+[inputs.zen-browser.follows]
+home-manager = "home-manager"
+nixpkgs = "nixpkgs"
