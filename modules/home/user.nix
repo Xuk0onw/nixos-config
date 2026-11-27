@@ -41,7 +41,6 @@
       QMLLS_BUILD_DIRS = "${pkgs.qt6.qtdeclarative}/lib/qt-6/qml:${pkgs.quickshell}/lib/qt-6/qml";
       QML_IMPORT_PATH = "${pkgs.qt6.qtdeclarative}/lib/qt-6/qml:${pkgs.quickshell}/lib/qt-6/qml:${pkgs.qt6.qt5compat}/lib/qt-6/qml";
       FREETYPE_PROPERTIES = "cff:no-stem-darkening=0 autofitter:no-stem-darkening=0";
-      GTK_THEME = "Orchis-Purple-Dark";
       ICON_THEME = "Tela-circle-dark";
       # Use nixpkgs' patched browsers instead of downloading Playwright's own.
       PLAYWRIGHT_BROWSERS_PATH = "${pkgs.playwright-driver.browsers}";

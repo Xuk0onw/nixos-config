@@ -5,6 +5,7 @@
     imports = with config.flake.modules.homeManager; [
       niri-desktop
       wlogout-desktop
+      umbriel-desktop
       kitty
       rofi
       opencode

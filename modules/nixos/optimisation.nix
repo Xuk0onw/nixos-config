@@ -11,10 +11,5 @@
       dates = "weekly";
       options = "--delete-older-than 4d";
     };
-
-    nix.optimise = {
-      automatic = true;
-      dates = [ "weekly" ];
-    };
   };
 }

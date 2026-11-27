@@ -4,12 +4,12 @@
   flake.modules.homeManager.fuzzel = {
 
     programs.fuzzel = {
-      enable = false;
+      enable = true;
 
       settings = {
         main = {
           font = "Hurmit Nerd Font:size=16";
-          terminal = "kitty";
+          terminal = "foot";
           width = 55;
           horizontal-pad = 28;
           vertical-pad = 22;

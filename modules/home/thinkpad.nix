@@ -5,6 +5,7 @@
     imports = with config.flake.modules.homeManager; [
       niri-thinkpad
       wlogout-thinkpad
+      umbriel-thinkpad
       foot
       fuzzel
     ];

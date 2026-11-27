@@ -8,12 +8,7 @@
 
     hardware.alsa.enablePersistence = true;
 
-    services.pipewire = {
-      enable = true;
-      pulse.enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-    };
+    services.pipewire.alsa.support32Bit = true;
 
     systemd.user.services.enable-internal-mic = {
       description = "Enable internal microphone capture";
@@ -23,7 +18,7 @@
 
       serviceConfig = {
         Type = "oneshot";
-        ExecStart = "${pkgs.alsa-utils}/bin/amixer -c Generic_1 sset Capture cap";
+        ExecStart = "${pkgs.pulseaudio}/bin/pactl set-source-mute @DEFAULT_SOURCE@ 0";
         RemainAfterExit = true;
       };
 

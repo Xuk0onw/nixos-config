@@ -20,7 +20,8 @@
       enable = true;
 
       settings = {
-        STOP_CHARGE_THRESH_BAT0 = 1;
+        START_CHARGE_THRESH_BAT0 = 75;
+        STOP_CHARGE_THRESH_BAT0 = 80;
         PLATFORM_PROFILE_ON_AC = "balanced";
         PLATFORM_PROFILE_ON_BAT = "low-power";
         CPU_BOOST_ON_AC = 0;
@@ -30,7 +31,6 @@
       };
     };
 
-    networking.networkmanager.enable = true;
     networking.firewall = {
       enable = true;
       allowedTCPPorts = [ 53317 ];

@@ -10,10 +10,9 @@
       games
       tablet
       cachykernel
-      noctalia
-      umbriel
       obs
       ollama
+      wallpaperengine
       lamp
     ]) ++ [
       inputs.umbriel.nixosModules.default

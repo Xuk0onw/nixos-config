@@ -16,7 +16,6 @@
       home-services
       gtk-qt
       noctalia
-      umbriel
       dms
       mango
     ];

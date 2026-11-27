@@ -9,13 +9,13 @@
       services
       users
       docker
-      wallpaperengine
       bluetooth
       font
       network
       optimisation
       audio
-      #lab
+      noctalia
+      umbriel
       git
       settings
       home-manager

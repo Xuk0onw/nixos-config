@@ -4,7 +4,7 @@
   flake.modules.homeManager.yazi = { pkgs, ... }: {
     programs.yazi = {
       enable = true;
-      extraPackages = with pkgs; [ ouch wl-clipboard ripdrag allmytoes ];
+      extraPackages = with pkgs; [ ouch wl-clipboard ripdrag allmytoes imagemagick ];
       settings = {
         mgr = {
           sort_by = "natural";

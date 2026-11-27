@@ -34,7 +34,7 @@
         efi.canTouchEfiVariables = true;
       };
 
-      consoleLogLevel = 0;
+      consoleLogLevel = 3;
 
       initrd = {
         kernelModules = [
@@ -53,7 +53,6 @@
       kernelParams = [
         "quiet"
         "splash"
-        "loglevel=3"
         "rd.systemd.show_status=false"
         "rd.udev.log_level=3"
         "udev.log_priority=3"

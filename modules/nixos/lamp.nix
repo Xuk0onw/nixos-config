@@ -84,11 +84,18 @@
           --user=mysql8 --datadir=/var/lib/mysql8 --basedir=${pkgs.mysql84}
       '';
       postStart = ''
-        ${pkgs.mysql84}/bin/mysql -S /run/mysqld8/mysqld.sock -u root \
-          -e "ALTER USER root@localhost IDENTIFIED WITH auth_socket;" || true
+        for _ in $(${pkgs.coreutils}/bin/seq 1 30); do
+          ${pkgs.mysql84}/bin/mysqladmin -S /run/mysqld8/mysqld.sock -u root ping >/dev/null 2>&1 && break
+          ${pkgs.coreutils}/bin/sleep 1
+        done
+        ${pkgs.mysql84}/bin/mysql -S /run/mysqld8/mysqld.sock -u root -e "
+          ALTER USER root@localhost IDENTIFIED WITH auth_socket;
+          CREATE USER IF NOT EXISTS 'xjle'@'localhost' IDENTIFIED WITH auth_socket;
+          GRANT ALL PRIVILEGES ON *.* TO 'xjle'@'localhost' WITH GRANT OPTION;
+          FLUSH PRIVILEGES;" || true
       '';
       serviceConfig = {
-        Type = "notify";
+        Type = "simple";
         User = "mysql8";
         Group = "mysql8";
         RuntimeDirectory = "mysqld8";

@@ -10,11 +10,11 @@
       pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto-zen4;
 
     nix.settings = {
-      substituters = [
+      extra-substituters = [
         "https://cache.lantian.pub/lantian"
       ];
 
-      trusted-public-keys = [
+      extra-trusted-public-keys = [
         "lantian:WVGO7vsRMSEN+h7Lp7kv6SAmrkEXgUGbbXm7jMDjBuQ="
       ];
     };

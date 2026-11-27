@@ -2,18 +2,23 @@
 
 {
   flake.modules.nixos.services = { pkgs, ... }: {
-    hardware.bluetooth.enable = true;
-    hardware.bluetooth.powerOnBoot = true;
-
     services.libinput.enable = true;
     services.printing.enable = true;
-    services.openssh.enable = true;
+    services.openssh = {
+      enable = true;
+      settings = {
+        PasswordAuthentication = false;
+        KbdInteractiveAuthentication = false;
+      };
+    };
     services.cloudflare-warp.enable = true;
     services.gvfs.enable = true;
     services.udisks2.enable = true;
     services.flatpak.enable = true;
     systemd.services.flatpak-flathub = {
       wantedBy = [ "multi-user.target" ];
+      after = [ "network-online.target" ];
+      wants = [ "network-online.target" ];
       path = [ pkgs.flatpak ];
       script = ''
         flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo

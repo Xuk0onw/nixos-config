@@ -6,10 +6,10 @@
 # The keys from Niri's ~/.config/niri/config.kdl. Kept here instead of config.d/60-from-niri.toml because
 # `inir compositor sync` writes that file with case/modifier spellings that collide and invalidate the config.
 [keybinds]
-"Mod+T" = "spawn kitty"
-"Ctrl+Space" = "spawn qs ipc call launcher open"
-"Mod+E" = "spawn kitty -e yazi"
-"Super+Alt+L" = "spawn swaylock"
+"Mod+T" = "spawn @TERMINAL@"
+@QUICKSHELL_BIND@
+"Mod+E" = "spawn @TERMINAL@ -e yazi"
+"Super+Alt+L" = "spawn qylock-lock"
 "XF86AudioRaiseVolume" = { action = "spawn wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+", allow_when_locked = true }
 "XF86AudioLowerVolume" = { action = "spawn wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-", allow_when_locked = true }
 "XF86AudioMute" = { action = "spawn wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle", allow_when_locked = true }
@@ -64,8 +64,8 @@
 "Mod+Shift+W" = "spawn helium"
 "Mod+S" = "spawn steam"
 "Mod+A" = "spawn skwd-wall-v2"
-"Mod+D" = "spawn sh -c 'pkill -x rofi || ~/.config/rofi/launchers/type-6/launcher.sh'"
-"Ctrl+Shift+Escape" = "spawn kitty -e btop"
+@ROFI_BIND@
+"Ctrl+Shift+Escape" = "spawn @TERMINAL@ -e btop"
 "Mod+Shift+S" = "spawn inir region screenshot"
 "Ctrl+Alt+Delete" = "session-quit"
 "Mod+Shift+P" = "dpms-off"
@@ -77,4 +77,4 @@
 "Mod+Shift+I" = "workspace-move-up"
 
 [output.eDP-1]
-scale = 1.25
+scale = @SCALE@

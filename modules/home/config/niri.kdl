@@ -138,12 +138,10 @@ window-rule {
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
-    Mod+t hotkey-overlay-title="Open a Terminal: kitty" { spawn "@TERMINAL@"; }
-		Ctrl+Space hotkey-overlay-title="Quickshell Launcher" {
-    spawn "qs" "ipc" "call" "launcher" "open";
-}
+    Mod+t hotkey-overlay-title="Open a Terminal: @TERMINAL_NAME@" { spawn "@TERMINAL@"; }
+@QUICKSHELL_BIND@
 		Mod+E { spawn "@TERMINAL@" "-e" "yazi"; }
-    Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
+    Super+Alt+L hotkey-overlay-title="Lock the Screen: qylock" { spawn "qylock-lock"; }
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
@@ -273,9 +271,7 @@ binds {
     Mod+Ctrl+W { toggle-column-tabbed-display; }
     Mod+A hotkey-overlay-title="Skwd-wall" { spawn "skwd-wall-v2"; }
 
-    Mod+D {
-    spawn "sh" "-c" "pkill -x rofi || ~/.config/rofi/launchers/type-6/launcher.sh";
-}
+@ROFI_BIND@
 
     Ctrl+Shift+Escape {
     spawn "@TERMINAL@" "-e" "btop";
