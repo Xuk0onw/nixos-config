@@ -9,7 +9,7 @@
     nix.gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 8d";
+      options = "--delete-older-than 4d";
     };
 
     nix.optimise = {
