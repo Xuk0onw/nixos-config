@@ -147,16 +147,16 @@
     "type": "github",
     "owner": "noctalia-dev",
     "repo": "umbriel",
-    "rev": "44575f7c1cf401839398a103452a673abe27eba1",
-    "narHash": "sha256-Lco5tlM1dYs8lFpS/SBcvPlGFUKnqrxhynBYBAG5KAU=",
-    "lastModified": 1795799843
+    "rev": "f0262d47a6ca9edc64ad1c5419898dc8192a4aa3",
+    "narHash": "sha256-XMpbqkUQKvvmezo4cWU3eOB0Pr8fjQg6G2ELPjPY8eI=",
+    "lastModified": 1795802030
   },
   "zen-browser": {
     "type": "github",
     "owner": "0xc000022070",
     "repo": "zen-browser-flake",
-    "rev": "8fff5095fe8dcf614c2a4bec4ca346a800910e11",
-    "narHash": "sha256-tQ5YNz44fWJ7VWWia5ivfr5ZTlPR6GAxJkna4Z8j2bY=",
-    "lastModified": 1795762905
+    "rev": "1b4434a8a6751b8a7eb4dd695ee5f645870acf99",
+    "narHash": "sha256-VOYmjnE6Ky9MbAZqJ5LGwnpO1vhRJU5x2iPpwpWvKbY=",
+    "lastModified": 1795802018
   }
 }

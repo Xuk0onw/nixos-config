@@ -64,5 +64,6 @@
     programs.mango.enable = false;
     programs.nix-ld.enable = true;
     programs.umbriel.enable = true;
+    programs.tack.enable = true;
   };
 }

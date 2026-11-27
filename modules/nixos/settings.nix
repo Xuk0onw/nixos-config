@@ -4,7 +4,17 @@
   flake.modules.nixos.settings = { pkgs, ... }: {
     nixpkgs.config.allowUnfree = true;
 
-    nix.settings.experimental-features = [ "nix-command" "flakes" ];
+    nix.settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+
+      extra-substituters = [
+        "https://cache.manic.systems"
+      ];
+
+      extra-trusted-public-keys = [
+        "cache.manic.systems-1:s6OZanN8Us8vRi0jVivP3qlMn0cYHBjBALKrNe5nH8s="
+      ];
+    };
 
     powerManagement = {
       enable = true;
