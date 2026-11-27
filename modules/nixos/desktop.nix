@@ -10,6 +10,7 @@
       games
       tablet
       cachykernel
+      binary-caches-desktop
       obs
       ollama
       wallpaperengine

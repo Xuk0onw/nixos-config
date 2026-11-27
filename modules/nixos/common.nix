@@ -14,8 +14,7 @@
       network
       optimisation
       audio
-      noctalia
-      umbriel
+      binary-caches
       git
       settings
       home-manager
