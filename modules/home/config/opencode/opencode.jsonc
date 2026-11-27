@@ -5,9 +5,8 @@
   "small_model": "opencode/hy4-flash-free",
   "autoupdate": "notify",
   // === Plugins ===
-  // Disabled while testing local models (extra prompt/tool overhead).
-  // Re-add "@dietrichgebert/ponytail" once local tool calling works.
   "plugins": [
+    "@dietrichgebert/ponytail",
     "@cortexkit/opencode-magic-context@latest"
   ],
   // Magic Context manages context itself; built-in compaction must be off.
